@@ -37,8 +37,19 @@
 						{% for team in upper_teams %}
 						<tr>
 							<td>
-								<span class="d-block d-md-none ml-1">{{ team.name }}</span>
-								<span class="d-none d-md-block ml-3">{{ team.name }}</span>
+								{% if forloop.counter == 1 %} 
+									<span class="d-block d-md-none ml-1">🥇{{ team.name }}</span>
+									<span class="d-none d-md-block ml-3">🥇{{ team.name }}</span>
+								{% elif forloop.counter == 2 %} 
+									<span class="d-block d-md-none ml-1">🥈{{ team.name }}</span>
+									<span class="d-none d-md-block ml-3">🥈{{ team.name }}</span>
+								{% elif forloop.counter == 3 %} 
+									<span class="d-block d-md-none ml-1">🥉{{ team.name }}</span>
+									<span class="d-none d-md-block ml-3">🥉{{ team.name }}</span>
+								{% else %}
+									<span class="d-block d-md-none ml-1">{{ team.name }}</span>
+									<span class="d-none d-md-block ml-3">{{ team.name }}</span>
+								{% endif %}
 							</td>
 							<td class="text-center">{{ team.questions_answered }}</td>
 							<td class="text-center">{{ team.score }}</td>
