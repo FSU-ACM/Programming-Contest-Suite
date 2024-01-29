@@ -74,10 +74,10 @@ class Contest(models.Model):
 
     def is_contest_complete(self):
         """
-        Returns the state of the contest (true if contest not finished, false otherwise)
+        Returns the state of the contest
         """
 
         if self.results is None:
-            return True
-        else: 
             return False
+        else: 
+            return True
