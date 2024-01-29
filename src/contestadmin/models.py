@@ -71,3 +71,13 @@ class Contest(models.Model):
             return self.FORMAT[self.participation - 1][1]
         else:
             return 'TBA'
+
+    def is_contest_complete(self):
+        """
+        Returns the state of the contest (true if contest not finished, false otherwise)
+        """
+
+        if self.results is None:
+            return True
+        else: 
+            return False
