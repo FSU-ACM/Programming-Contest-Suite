@@ -286,62 +286,69 @@
       </div>
       <!-- DOMjudge LFG Discord row end -->
 
-      <!-- Extra Credit card -->
-      <div class="card border-secondary mt-3">
-        <div class="card-header font-weight-bold bg-secondary text-white">
-          <i class="fa-solid fa-list-ul fa-fw"></i> Extra Credit Courses
-        </div>
-        <div class="card-body">
-          {% for course in courses|slice:"5" %}
-            <p class="card-text mb-1">
-              <span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> - {{course.instructor.last_name }}
-            </p>
-          {% empty %}
-            <p class="card-text">No courses have been confirmed at this time.</p>
-          {% endfor %}
-          {% if courses|length > 5 %}
-            <button type="button" class="btn btn-primary btn-sm mt-2" data-toggle="modal" data-target="#displayCoursesModal">View All
-            </button>
-          {% endif %}
+     <!-- Extra Credit card -->
+      <div id="accordionCourses">
+        <div class="card border-secondary mt-3">
+          <div class="card-header font-weight-bold bg-secondary text-white" data-toggle="collapse" data-target="#collapseCourses" aria-expanded="true" aria-controls="collapseCourses" style="cursor: pointer;">
+            <i class="fa-solid fa-list-ul fa-fw"></i> Extra Credit Courses
+          </div>
+          <div id="collapseCourses" class="collapse" data-parent="#accordionCourses">
+            <div class="card-body">
+              {% for course in courses|slice:"5" %}
+                <p class="card-text mb-1">
+                  <span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> - {{course.instructor.last_name }}
+                </p>
+              {% empty %}
+                <p class="card-text">No courses have been confirmed at this time.</p>
+              {% endfor %}
+              {% if courses|length > 5 %}
+                <button type="button" class="btn btn-primary btn-sm mt-2" data-toggle="modal" data-target="#displayCoursesModal">View All
+                </button>
+              {% endif %}
+            </div>
+          </div>
         </div>
       </div>
       <!-- Extra Credit Card end -->
 
       <!-- About Contest Card -->
-      <div class="card border-secondary mt-3">
-        <div class="card-header font-weight-bold bg-secondary text-white">
-          <i class="fa-solid fa-circle-info fa-fw"></i> The Contest
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">About</h4>
-          <p class="card-text">
-            The ACM at FSU Programming Contest is a coding competition
-            emphasizing problem solving executed in code.
-            Students, faculty, and staff from all majors and colleges are welcome.
-            The competition lasts 5 hours, and teams are limited to 3 members.
-            The top teams from each division receive prizes,
-            which have previously included items such as Google Home Minis,
-            Amazon Echoes, Raspberry Pi's, Chromecasts, and ACM chapter t-shirts.
-          </p>
-          <h4 class="card-title">Volunteering</h4>
-          <p class="card-text">
-            Our team is comprised entirely of volunteers, and we welcome anyone interested in helping out at this or future contests. Each volunteer typically takes on one of the following roles:
-            <ul>
-              <li>Docent</li>
-              <li>Proctor</li>
-              <li>Question Writer</li>
-            </ul>
-            Please contact our team at <a href="mailto:contest@fsu.acm.org">contest@fsu.acm.org</a> for additional information! 
-          </p>
-          <small class="card-text">
-            <em>A special thank you to ACM at FSU alumnus Will Davenport for donating the server hardware.</em>
-          </small>
+      <div id="accordionAbout">
+        <div class="card border-secondary mt-3">
+          <div class="card-header font-weight-bold bg-secondary text-white" data-toggle="collapse" data-target="#collapseAbout" aria-expanded="true" aria-controls="collapseAbout" style="cursor: pointer;">
+            <i class="fa-solid fa-circle-info fa-fw"></i> The Contest
+          </div>
+          <div id="collapseAbout" class="collapse show" aria-labelledby="headingAbout" data-parent="#accordionAbout">
+            <div class="card-body">
+              <h4 class="card-title">About</h4>
+              <p class="card-text">
+                The ACM at FSU Programming Contest is a coding competition
+                emphasizing problem solving executed in code.
+                Students, faculty, and staff from all majors and colleges are welcome.
+                The competition lasts 5 hours, and teams are limited to 3 members.
+                The top teams from each division receive prizes,
+                which have previously included items such as Google Home Minis,
+                Amazon Echoes, Raspberry Pi's, Chromecasts, and ACM chapter t-shirts.
+              </p>
+              <h4 class="card-title">Volunteering</h4>
+              <p class="card-text">
+                Our team is comprised entirely of volunteers, and we welcome anyone interested in helping out at this or future contests. Each volunteer typically takes on one of the following roles:
+                <ul>
+                  <li>Docent</li>
+                  <li>Proctor</li>
+                  <li>Question Writer</li>
+                </ul>
+                Please contact our team at <a href="mailto:contest@fsu.acm.org">contest@fsu.acm.org</a> for additional information! 
+              </p>
+              <small class="card-text">
+                <em>A special thank you to ACM at FSU alumnus Will Davenport for donating the server hardware.</em>
+              </small>
+            </div>
+          </div>
         </div>
       </div>
       <!-- About Contest Card end -->
     </div>
-    <!-- Contest Information Column end -->
-  </div>
+  <!-- Contest Information Column end -->
 
   <!-- Courses Modal -->
   <div class="modal fade" id="displayCoursesModal" tabindex="-1" role="dialog"
