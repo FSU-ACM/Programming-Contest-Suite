@@ -25,6 +25,9 @@ class Faculty(models.Model):
     def __str__(self):
         return (str(self.first_name) + ' ' + str(self.last_name))
 
+    def get_first_initial(self):
+        return(str(self.first_name[0]))
+
 
 class Course(models.Model):
     """

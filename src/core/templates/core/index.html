@@ -294,7 +294,7 @@
         <div class="card-body">
           {% for course in courses|slice:"5" %}
             <p class="card-text mb-1">
-              <span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> - {{course.instructor.last_name }}
+              <span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> - {{course.instructor.get_first_initial }}. {{course.instructor.last_name }}
             </p>
           {% empty %}
             <p class="card-text">No courses have been confirmed at this time.</p>
@@ -359,7 +359,7 @@
             <div class="col-lg-10">
               <ul class="list-group list-group-flush">
               {% for course in courses %}
-              <li class="list-group-item"><span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> - {{ course.instructor.last_name }}</li>
+              <span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> - {{course.instructor.get_first_initial }}. {{course.instructor.last_name }}
               {% empty %}
               <li class="list-group-item">No courses have been confirmed at this time.</li>
               {% endfor %}

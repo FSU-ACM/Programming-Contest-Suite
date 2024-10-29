@@ -102,3 +102,6 @@ class Team(models.Model):
                 return True
         
         return False
+
+
+    
