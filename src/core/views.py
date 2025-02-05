@@ -29,7 +29,7 @@ class IndexTemplateView(TemplateView):
             context['domjudge_status'] = cache.get('domjudge_status')
         else:
             try:
-                r = req.head(DOMJUDGE_URL)
+                r = req.head(DOMJUDGE_URL, timeout=3)
             except req.ConnectionError:
                 context['domjudge_status'] = None
             else:
