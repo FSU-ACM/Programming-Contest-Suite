@@ -6,8 +6,6 @@ from .utils import contestadmin_auth
 
 urlpatterns = [
     path('', views.dashboard, name='admin_dashboard'),
-    path('discord/create_roles', views.create_discord_roles, name='create_discord_roles'),
-    path('discord/remove_roles', views.remove_discord_roles, name='remove_discord_roles'),
     path('dj_tsv/download', login_required((user_passes_test(contestadmin_auth, login_url='/', redirect_field_name=None))(views.DownloadTSVFiles.as_view())), name='download_dj_files'),
     path('dj_tsv/generate', login_required((user_passes_test(contestadmin_auth, login_url='/', redirect_field_name=None))(views.GenerateDomJudgeTSV.as_view())), name='gen_dj_files'),
     path('ec_files/download', login_required((user_passes_test(contestadmin_auth, login_url='/', redirect_field_name=None))(views.DownloadExtraCreditFiles.as_view())), name='download_ec_files'),

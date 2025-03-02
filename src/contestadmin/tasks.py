@@ -15,7 +15,7 @@ from django.utils.http import urlsafe_base64_encode
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
-from contestsuite.settings import MEDIA_ROOT, DEFAULT_FROM_EMAIL, BOT_CHANNEL_WEBHOOK_URL
+from contestsuite.settings import MEDIA_ROOT, DEFAULT_FROM_EMAIL
 from contestadmin.models import Contest
 from core.utils import make_random_password
 from manager.models import Course, Faculty, Profile
@@ -390,59 +390,3 @@ def process_contest_results():
                 logger.info(f"Processed contest results for {num_teams} teams")
         else:
             logger.error("No Team objects exist in database.")
-
-
-@shared_task
-def clear_discord_channel(id):
-    """
-    Celery task to send a clear channel command message to a target Discord server.
-        - Command used by the ACM-FSU/pcs-bot
-
-    id: ID of the target channel on the Discord server which will be cleared
-    """
-    
-    try:
-        webhook = Webhook.from_url(
-            BOT_CHANNEL_WEBHOOK_URL, adapter=RequestsWebhookAdapter())
-    except InvalidArgument:
-        logger.error('Failed to connect to bot channel webhook.')
-    else:
-        message = '$clear '+str(id)
-        # Executing webhook.
-        webhook.send(content=message)
-
-
-@shared_task
-def create_discord_lfg_roles():
-    """
-    Celery task to send a create roles command message to a target Discord server.
-        - Command used by the ACM-FSU/pcs-bot
-    """
-
-    try:
-        webhook = Webhook.from_url(
-            BOT_CHANNEL_WEBHOOK_URL, adapter=RequestsWebhookAdapter())
-    except InvalidArgument:
-        logger.error('Failed to connect to bot channel webhook.')
-    else:
-        message = '$create_roles'
-        # Executing webhook.
-        webhook.send(content=message)
-
-
-@shared_task
-def remove_all_discord_lfg_roles():
-    """
-    Celery task to send a remove roles command message to a target Discord server.
-        - Command used by the ACM-FSU/pcs-bot
-    """
-
-    try:
-        webhook = Webhook.from_url(
-            BOT_CHANNEL_WEBHOOK_URL, adapter=RequestsWebhookAdapter())
-    except InvalidArgument:
-        logger.error('Failed to connect to bot channel webhook.')
-    else:
-        message = '$remove_all_roles'
-        # Executing webhook.
-        webhook.send(content=message)

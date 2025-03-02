@@ -184,53 +184,6 @@
 	</div>
 	<!-- Account Control deck end -->
 
-	<!-- Discord Control Card deck -->
-	<div class="card-deck">
-		<!-- Roles card -->
-		<div class="card mt-4 border-secondary">
-			<div class="card-header font-weight-bold bg-secondary text-white">
-				<i class="fa-brands fa-discord fa-fw"></i> Discord Tools
-			</div>
-			<div class="card-body overflow-auto">
-				<div class="row justify-content-center">
-					<a class="btn btn-primary btn-sm my-1" href="{% url 'create_discord_roles' %}" onclick="return confirm('Are you certain you want to create the Discord LFG roles?');"><i class="fa-solid fa-circle-plus fa-fw"></i> Create Discord LFG Roles</a>
-				</div>
-				<div class="row justify-content-center">
-					<div class="row justify-content-center">
-						<a class="btn btn-primary btn-sm my-1" href="{% url 'remove_discord_roles' %}" onclick="return confirm('Are you certain you want to remove the Discord LFG roles?');"><i class="fa-solid fa-trash-can fa-fw"></i> Remove Discord LFG Roles</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Roles card end -->
-		<!-- Channel card -->
-		<div class="card mt-4 border-secondary">
-			<div class="card-header font-weight-bold bg-secondary text-white">
-				<i class="fa-brands fa-discord fa-fw"></i> Clear Discord Channel
-			</div>
-			<form method="post" onSubmit="return confirm('Are you certain you want to clear this Discord channel?');">
-				<div class="card-body overflow-auto">
-					{% csrf_token %}
-					{% for field in channel_form %}
-					<p class="mb-0">
-						{{ field | placeholder:"Channel ID" }}<br>
-						<small class="form-text text-muted">
-							{% for error in field.errors %}
-							<p class="text-monospace font-weight-lighter text-danger mb-0">-{{ error }}</p>
-							{% endfor %}
-						</small>
-					</p>
-					{% endfor %}
-				</div>
-				<div class="card-footer">
-					<button class="btn btn-primary btn-sm" type="submit">Submit</button>
-				</div>
-			</form>
-		</div>
-		<!-- Channel card end -->
-	</div>
-	<!-- Discord Control deck end -->
-
 	<!-- Volunteer Summary card -->
 	<div id="accordionVolunteer">
 		<div class="card mt-4 mb-3 border-secondary">

@@ -256,7 +256,6 @@ def dashboard(request):
         walkin_form = forms.GenerateWalkinForm(request.POST)
         file_form = forms.ResultsForm(request.POST, request.FILES)
         checkin_form = forms.CheckinUsersForm(request.POST)
-        channel_form = forms.ClearChannelForm(request.POST)
         update_password_form = forms.UpdatePasswordForm(request.POST)
         profile_role_form = forms.UpdateProfileRoleForm(request.POST)
         account_status_form = forms.AccountStatusForm(request.POST)
@@ -271,12 +270,6 @@ def dashboard(request):
             tasks.check_in_out_users.delay(
                 int(checkin_form.cleaned_data['action']))
             messages.info(request, 'Check in/out task scheduled.',
-                          fail_silently=True)
-        # Process clear Discord channel form
-        elif channel_form.is_valid():
-            tasks.clear_discord_channel.delay(
-                channel_form.cleaned_data['channel_id'])
-            messages.info(request, 'Clear channel task scheduled.',
                           fail_silently=True)
         # Process password update form
         elif update_password_form.is_valid():
@@ -383,7 +376,6 @@ def dashboard(request):
         walkin_form = forms.GenerateWalkinForm()
         file_form = forms.ResultsForm()
         checkin_form = forms.CheckinUsersForm()
-        channel_form = forms.ClearChannelForm()
         update_password_form = forms.UpdatePasswordForm()
         profile_role_form = forms.UpdateProfileRoleForm()
         account_status_form = forms.AccountStatusForm()
@@ -418,7 +410,6 @@ def dashboard(request):
     context['checkin_form'] = checkin_form
     context['file_form'] = file_form
     context['gen_walkin_form'] = walkin_form
-    context['channel_form'] = channel_form
     context['update_password_form'] = update_password_form
     context['profile_role_form'] = profile_role_form
     context['account_status_form'] = account_status_form
@@ -513,27 +504,3 @@ def contest_statistics(request):
     context['courses'] = Course.objects.all()
 
     return render(request, 'contestadmin/statistics_dashboard.html', context)
-
-
-@login_required
-@user_passes_test(contestadmin_auth, login_url='/', redirect_field_name=None)
-def create_discord_roles(request):
-    """
-    View which schedules a Celery task to create LFG roles in a target Discord server.
-    """
-    
-    tasks.create_discord_lfg_roles.delay()
-    messages.info(request, 'Create roles task scheduled.', fail_silently=True)
-    return redirect('admin_dashboard')
-
-
-@login_required
-@user_passes_test(contestadmin_auth, login_url='/', redirect_field_name=None)
-def remove_discord_roles(request):
-    """
-    View which schedules a Celery task to remove all LFG roles from a target Discord server.
-    """
-    
-    tasks.remove_all_discord_lfg_roles.delay()
-    messages.info(request, 'Remove roles task scheduled.', fail_silently=True)
-    return redirect('admin_dashboard')
