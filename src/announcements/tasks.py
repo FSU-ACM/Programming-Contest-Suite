@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
-from discord import Webhook, Embed
+from discord import SyncWebhook, Embed
 
 from .models import Announcement
 from contestsuite.settings import ANNOUNCEMENT_WEBHOOK_URL, DEFAULT_FROM_EMAIL, ALLOWED_HOSTS
@@ -62,9 +62,7 @@ def discord_announcement(id):
         logger.error(f'Failed to fetch announcement with id {id}')
     else:
         # Initializing webhook
-        # webhook = Webhook.from_url(
-        #     ANNOUNCEMENT_WEBHOOK_URL, adapter=RequestsWebhookAdapter())
-        webhook = Webhook.SyncWebHook.from_url(ANNOUNCEMENT_WEBHOOK_URL)
+        webhook = SyncWebhook.from_url(ANNOUNCEMENT_WEBHOOK_URL)
         url = 'https://'+ALLOWED_HOSTS[0]+announcement.get_absolute_url()
         
         if len(announcement.content) <= 140:
