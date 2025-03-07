@@ -25,9 +25,6 @@ services:
             SQL_DATABASE: contestsuite
             SQL_USER: contestadmin
             SQL_PASSWORD: seminoles1!
-
-            # Discord
-            GUILD_ID: # Discord Server ID
         ports:
             - 8000:8000
         volumes:
@@ -54,7 +51,6 @@ services:
             
             # Discord
             ANNOUNCEMENT_WEBHOOK_URL: # Webhook URL of the contest announcements channel
-            BOT_CHANNEL_WEBHOOK_URL: # Webhook URL of the bot command channel
         volumes:
             - ../src:/app
         networks:
