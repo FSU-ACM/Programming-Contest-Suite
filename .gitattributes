@@ -1,0 +1,5 @@
+# Make sure that shell scripts always use LF -- Windows likes to automatically change it to CRLF
+*.sh text eol=lf
+
+# Make sure Python scripts aren't modified either
+*.py text eol=lf

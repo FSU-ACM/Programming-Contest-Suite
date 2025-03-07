@@ -12,11 +12,11 @@ django-import-export = "*"
 celery = "*"
 gunicorn = "*"
 six = "*"
-"discord.py" = "<2.0"
 requests = "*"
 django-hashid-field = "*"
 django-celery-beat = "*"
 flower = "*"
+discord-py = "==2.5.0"
 
 [dev-packages]
 

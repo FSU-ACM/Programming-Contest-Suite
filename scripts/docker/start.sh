@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-    echo "Usage: start.sh [PROCESS_TYPE](server | worker | beat | flower | bot)"
+    echo "Usage: start.sh [PROCESS_TYPE](server | worker | beat | flower)"
     exit 1
 fi
 
@@ -74,10 +74,7 @@ elif [ "$PROCESS_TYPE" = "flower" ]; then
                 --loglevel INFO \
                 --conf=contestsuite/flowerconfig.py
     fi
-elif [ "$PROCESS_TYPE" = "bot" ]; then
-    python \
-        bot.py
 else
-    echo "Invalid [PROCESS_TYPE](server | worker | beat | flower | bot)"
+    echo "Invalid [PROCESS_TYPE](server | worker | beat | flower)"
     exit 1
 fi

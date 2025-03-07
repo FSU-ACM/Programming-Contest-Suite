@@ -106,13 +106,10 @@ The following variables, located in the main settings file[^1], map to various P
 Variable | Default | Description
 ---|---|---
 ANNOUNCEMENT_WEBHOOK_URL | None | URL of Discord server's announcement channel webhook |
-BOT_CHANNEL_WEBHOOK_URL | None | URL of Discord server's bot command channel webhook |
-GUILD_ID | 0 | Discord server's Guid ID |
-SCRAPE_BOT_TOKEN | None | Discord bot token required by the LFG helper bot |
 
 ## Misc
 
-The following variables, located in the main settings file[^1], map to miscellaneous PCS specific settings. A link to relevant documentation is provided for each variable.
+The following variables, located in the main settings file[^2], map to miscellaneous PCS specific settings. A link to relevant documentation is provided for each variable.
 
 Variable | Default | Description
 ---|---|---

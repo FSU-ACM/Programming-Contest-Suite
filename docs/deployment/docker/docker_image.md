@@ -24,7 +24,7 @@ REQUIREMENTS | requirements.txt | Path to the manifest file to use during image 
 
 ## Run Image
 
-The `Dockerfile` specifies an image capable of running the Django web app, Celery, or a helper Discord bot. The parameters passed to the image's start script `start.sh` determine the container's behavior.
+The `Dockerfile` specifies an image capable of running the Django web app with Celery. The parameters passed to the image's start script `start.sh` determine the container's behavior.
 
 ```bash
 docker run <image_name> /docker/start.sh <PROCESS_TYPE> <MODE>
@@ -36,7 +36,6 @@ server | Yes | Gunicorn server bound to the Django app
 worker | No | Celery Worker
 beat | No | Celery Beat
 flower | No | Celery Flower
-bot | No | Discord bot
 
 `MODE` | Default | Usage
 ---|---|---

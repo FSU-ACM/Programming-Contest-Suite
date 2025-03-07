@@ -25,9 +25,6 @@ services:
             SQL_DATABASE: contestsuite
             SQL_USER: contestadmin
             SQL_PASSWORD: seminoles1!
-
-            # Discord
-            GUILD_ID: # Discord Server ID
         ports:
             - 8000:8000
         volumes:
@@ -40,29 +37,6 @@ services:
             - rabbitmq
             - celery_worker
         restart: unless-stopped
-    scrape_bot:
-        image: contestsuite:dev
-        command: /docker/start.sh bot
-        environment:
-            # Django
-            DEBUG: 'True'
-
-            # Database
-            SQL_DATABASE: contestsuite
-            SQL_USER: contestadmin
-            SQL_PASSWORD: seminoles1!
-
-            # Discord
-            BOT_CHANNEL: # Name of command channel
-            GUILD_ID: # Discord Server ID
-            SCRAPE_BOT_TOKEN: # Token for the member list scraping bot
-        volumes:
-            - ../src:/app
-        networks:
-            - contestsuite
-        depends_on:
-            - mariadb
-            - django
     celery_worker:
         image: contestsuite:dev
         command: /docker/start.sh worker debug
@@ -77,7 +51,6 @@ services:
             
             # Discord
             ANNOUNCEMENT_WEBHOOK_URL: # Webhook URL of the contest announcements channel
-            BOT_CHANNEL_WEBHOOK_URL: # Webhook URL of the bot command channel
         volumes:
             - ../src:/app
         networks:

@@ -61,7 +61,6 @@ Programming-Contest-Suite/
     ├── register/
     ├── static/
     ├── templates/
-    ├── bot.py
     └── manage.py
 ```
 
@@ -77,7 +76,6 @@ Programming-Contest-Suite/
 - `register`: user account registration and team creation
 - `static`: target directory for all project static files upon deployment (placeholder dir)
 - `templates`: target directory for all project HTML templates upon deployment
-- `bot.py`: Discord bot which assists in LFG profile verification
 - `manage.py`: Django management entrypoint
 
 ## Testing & Development Server 
