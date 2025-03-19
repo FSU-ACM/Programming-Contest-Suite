@@ -272,14 +272,10 @@ CELERY_ENABLE_UTC = True
 
 CELERY_BEAT_SCHEDULE = {}
 
-
 # Discord
 # https://discordpy.readthedocs.io/en/stable/
 
 ANNOUNCEMENT_WEBHOOK_URL = get_secret('ANNOUNCEMENT_WEBHOOK_URL', None)
-BOT_CHANNEL_WEBHOOK_URL = get_secret('BOT_CHANNEL_WEBHOOK_URL', None)
-GUILD_ID = int(get_secret('GUILD_ID', 0))
-SCRAPE_BOT_TOKEN = get_secret('SCRAPE_BOT_TOKEN', None)
 
 
 # Hashid Fields

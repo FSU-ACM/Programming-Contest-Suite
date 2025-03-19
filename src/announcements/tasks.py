@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
-from discord import Webhook, RequestsWebhookAdapter, Embed, InvalidArgument
+from discord import SyncWebhook, Embed
 
 from .models import Announcement
 from contestsuite.settings import ANNOUNCEMENT_WEBHOOK_URL, DEFAULT_FROM_EMAIL, ALLOWED_HOSTS
@@ -61,22 +61,17 @@ def discord_announcement(id):
     except:
         logger.error(f'Failed to fetch announcement with id {id}')
     else:
-        try:
-            # Initializing webhook
-            webhook = Webhook.from_url(
-                ANNOUNCEMENT_WEBHOOK_URL, adapter=RequestsWebhookAdapter())
-        except InvalidArgument:
-            logger.error('Failed to connect to announcement webhook')
+        # Initializing webhook
+        webhook = SyncWebhook.from_url(ANNOUNCEMENT_WEBHOOK_URL)
+        url = 'https://'+ALLOWED_HOSTS[0]+announcement.get_absolute_url()
+        
+        if len(announcement.content) <= 140:
+            content = announcement.content
         else:
-            url = 'https://'+ALLOWED_HOSTS[0]+announcement.get_absolute_url()
-            
-            if len(announcement.content) <= 140:
-                content = announcement.content
-            else:
-                content = announcement.content[:140] + '...'
-            
-            # Initializing an Embed
-            embed = Embed(title=announcement.title, description=content, url=url)
+            content = announcement.content[:140] + '...'
+        
+        # Initializing an Embed
+        embed = Embed(title=announcement.title, description=content, url=url)
 
-            # Executing webhook.
-            webhook.send(embed=embed)
+        # Executing webhook.
+        webhook.send(embed=embed)
