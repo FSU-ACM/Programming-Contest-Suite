@@ -109,7 +109,7 @@ ANNOUNCEMENT_WEBHOOK_URL | None | URL of Discord server's announcement channel w
 
 ## Misc
 
-The following variables, located in the main settings file[^2], map to miscellaneous PCS specific settings. A link to relevant documentation is provided for each variable.
+The following variables, located in the main settings file[^1], map to miscellaneous PCS specific settings. A link to relevant documentation is provided for each variable.
 
 Variable | Default | Description
 ---|---|---
