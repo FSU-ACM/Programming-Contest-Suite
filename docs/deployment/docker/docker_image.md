@@ -24,7 +24,7 @@ REQUIREMENTS | requirements.txt | Path to the manifest file to use during image 
 
 ## Run Image
 
-The `Dockerfile` specifies an image capable of running the Django web app with Celery. The parameters passed to the image's start script `start.sh` determine the container's behavior.
+The `Dockerfile` specifies an image capable of running the Django web app, Celery, or Flower. The parameters passed to the image's start script `start.sh` determine the container's behavior.
 
 ```bash
 docker run <image_name> /docker/start.sh <PROCESS_TYPE> <MODE>
