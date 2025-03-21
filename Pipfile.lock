@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "09f1ca6029a8b82ecd0bfdd667667084d878b6b202801a9f495a297835f8e522"
+            "sha256": "d94bae63abd3a5b6ef5877241a4a1b29af21cf2b07471fcddae3a5225a533974"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.10"
+            "python_version": "3.12"
         },
         "sources": [
             {
@@ -331,12 +331,12 @@
         },
         "django": {
             "hashes": [
-                "sha256:6c833be4b0ca614f0a919472a1028a3bbdeb6f056fa04023aeb923346ba2c306",
-                "sha256:a104e13f219fc55996a4e416ef7d18ab4eeb44e0aa95174c192f16cda9f94e75"
+                "sha256:213381b6e4405f5c8703fffc29cd719efdf189dec60c67c04f76272b3dc845b9",
+                "sha256:92bac5b4432a64532abb73b2ac27203f485e40225d2640a7fbef2b62b876e789"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==4.2.19"
+            "version": "==4.2.20"
         },
         "django-celery-beat": {
             "hashes": [
@@ -357,12 +357,12 @@
         },
         "django-import-export": {
             "hashes": [
-                "sha256:143611d9d3c8b000c54e33db122c8d283eef38167acd7a854d15b9ad77c328e7",
-                "sha256:61e078cea307a6199a7e905840640e55db3521d7c81be224fd8b6576ce9bd0fc"
+                "sha256:5514d09636e84e823a42cd5e79292f70f20d6d2feed117a145f5b64a5b44f168",
+                "sha256:bd3fe0aa15a2bce9de4be1a2f882e2c4539fdbfdfa16f2052c98dd7aec0f085c"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.9'",
-            "version": "==4.3.5"
+            "version": "==4.3.7"
         },
         "django-timezone-field": {
             "hashes": [
@@ -614,11 +614,11 @@
         },
         "humanize": {
             "hashes": [
-                "sha256:106a7436a2d545d742c147c469716b3a08424aa143a82103630147c489a89f48",
-                "sha256:87ff7b43591370b12a1d103c9405849d911d4b039ed22d80b718b62c76eec8a3"
+                "sha256:1338ba97415c96556758a6e2f65977ed406dddf4620d4c6db9bbdfd07f0f1232",
+                "sha256:86014ca5c52675dffa1d404491952f1f5bf03b07c175a51891a343daebf01fea"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==4.12.0"
+            "version": "==4.12.1"
         },
         "idna": {
             "hashes": [
@@ -630,11 +630,11 @@
         },
         "kombu": {
             "hashes": [
-                "sha256:14212f5ccf022fc0a70453bb025a1dcc32782a588c49ea866884047d66e14763",
-                "sha256:eef572dd2fd9fc614b37580e3caeafdd5af46c1eff31e7fba89138cdb406f2cf"
+                "sha256:526c6cf038c986b998639109a1eb762502f831e8da148cc928f1f95cd91eb874",
+                "sha256:72e65c062e903ee1b4e8b68d348f63c02afc172eda409e3aca85867752e79c0b"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==5.4.2"
+            "version": "==5.5.0"
         },
         "multidict": {
             "hashes": [
