@@ -26,6 +26,8 @@ class Team(models.Model):
 
     score (PositiveSmallIntegerField): the team's final DOMjudge score
 
+    last_submission (PositiveSmallIntegerField): the team's last submission time
+
     num_members (PositiveSmallIntegerField): the number of users on the team
 
     faculty (BooleanField): If True, the team contains at least one faculty member. Otherwise the team does not contain a faculty member.
@@ -43,6 +45,7 @@ class Team(models.Model):
     contest_password = models.CharField(max_length=6, unique=True, blank=True, null=True)
     questions_answered = models.PositiveSmallIntegerField(default=0)
     score = models.PositiveSmallIntegerField(default=0)
+    last_submission = models.PositiveSmallIntegerField(default=0)
     num_members = models.PositiveSmallIntegerField(default=0)
     faculty = models.BooleanField(default=False)
 

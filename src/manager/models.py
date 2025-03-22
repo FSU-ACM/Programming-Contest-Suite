@@ -21,9 +21,12 @@ class Faculty(models.Model):
     email = models.EmailField(max_length=50, primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-        
+
     def __str__(self):
         return (str(self.first_name) + ' ' + str(self.last_name))
+    
+    def get_first_initial(self):
+        return(self.first_name[0])
 
 
 class Course(models.Model):
@@ -45,7 +48,7 @@ class Course(models.Model):
         ordering = ['code']
 
     def __str__(self):
-        return (str(self.code) + ' : ' + str(self.name) + ' - ' + str(self.instructor.last_name) + ', ' + str(self.instructor.first_name)[0])
+        return (str(self.code) + ' : ' + str(self.name) + ' - ' + str(self.instructor.last_name) + ', ' + str(self.instructor.get_first_initial()))
 
     def num_checkedin(self):
         """

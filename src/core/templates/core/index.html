@@ -102,7 +102,8 @@
             <div class="text-center">
               <img src="{% static 'core/img/fsucslogo.png' %}" class="img-fluid w-75 my-2" alt="FSU CS Logo">
               <img src="{% static 'core/img/L3Harris_logo.png' %}" class="img-fluid w-75 my-2" alt="L3Harris Logo">
-              <img src="{% static 'core/img/i2x.png' %}" class="img-fluid w-75 mt-2 mb-3" alt="i2x Solutions Logo">
+              <img src="{% static 'core/img/i2x.png' %}" class="img-fluid w-75 my-2" alt="i2x Solutions Logo">
+              <img src="{% static 'core/img/raymond_james.png' %}" class="img-fluid w-75 mt-2 mb-3" alt="Raymond James Logo">
             </div>
           </div>
           <div class="col-md-4 d-block d-md-none">
@@ -110,7 +111,8 @@
             <div class="text-center">
               <img src="{% static 'core/img/fsucslogo.png' %}" class="img-fluid w-75 my-2" alt="FSU CS Logo">
               <img src="{% static 'core/img/L3Harris_logo.png' %}" class="img-fluid w-75 my-2" alt="L3Harris Logo">
-              <img src="{% static 'core/img/i2x.png' %}" class="img-fluid w-75 mt-2 mb-3" alt="i2x Solutions Logo">
+              <img src="{% static 'core/img/i2x.png' %}" class="img-fluid w-75 my-2" alt="i2x Solutions Logo">
+              <img src="{% static 'core/img/raymond_james.png' %}" class="img-fluid w-75 mt-2 mb-3" alt="Raymond James Logo">
             </div>
           </div>
         </div>          
@@ -294,7 +296,7 @@
         <div class="card-body">
           {% for course in courses|slice:"5" %}
             <p class="card-text mb-1">
-              <span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> - {{course.instructor.last_name }}
+              <span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> - {{ course.instructor.get_first_initial }}. {{ course.instructor.last_name }}
             </p>
           {% empty %}
             <p class="card-text">No courses have been confirmed at this time.</p>
@@ -359,7 +361,7 @@
             <div class="col-lg-10">
               <ul class="list-group list-group-flush">
               {% for course in courses %}
-              <li class="list-group-item"><span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> - {{ course.instructor.last_name }}</li>
+              <li class="list-group-item"><span class="font-weight-bold">{{ course.code }} </span><i>{{ course.name }}</i> -  {{ course.instructor.get_first_initial }}. {{ course.instructor.last_name }}</li>
               {% empty %}
               <li class="list-group-item">No courses have been confirmed at this time.</li>
               {% endfor %}

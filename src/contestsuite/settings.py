@@ -270,29 +270,12 @@ CELERY_ENABLE_UTC = True
 # Celery Beat
 # https://celery-safwan.readthedocs.io/en/latest/reference/celery.beat.html
 
-CELERY_BEAT_SCHEDULE = {
-    'cleanup-lfg-rosters': { 
-         'task': 'lfg.tasks.cleanup_lfg_rosters', 
-         'schedule': 600.0,
-        },
-    'scrape-discord-members': { 
-         'task': 'lfg.tasks.scrape_discord_members', 
-         'schedule': 1800.0,
-        },
-    'verify-lfg-profiles': { 
-        'task': 'lfg.tasks.verify_lfg_profiles', 
-        'schedule': 600.0,
-    },          
-}
-
+CELERY_BEAT_SCHEDULE = {}
 
 # Discord
 # https://discordpy.readthedocs.io/en/stable/
 
 ANNOUNCEMENT_WEBHOOK_URL = get_secret('ANNOUNCEMENT_WEBHOOK_URL', None)
-BOT_CHANNEL_WEBHOOK_URL = get_secret('BOT_CHANNEL_WEBHOOK_URL', None)
-GUILD_ID = int(get_secret('GUILD_ID', 0))
-SCRAPE_BOT_TOKEN = get_secret('SCRAPE_BOT_TOKEN', None)
 
 
 # Hashid Fields

@@ -151,7 +151,7 @@
 										<tr>
 											<td>{{ course.code }}</td>
 											<td>{{ course.name }}</td>
-											<td>{{ course.instructor.last_name }}</td>
+											<td>{{ course.instructor.get_first_initial }}. {{ course.instructor.last_name }}</td>
 											<td class="text-center">{{ course.num_registered }}</td>
 										</tr>
 										{% endfor %}

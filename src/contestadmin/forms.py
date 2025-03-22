@@ -30,10 +30,6 @@ class ResultsForm(forms.ModelForm):
         fields = ['results']
 
 
-class ClearChannelForm(forms.Form):
-    channel_id = forms.IntegerField()
-
-
 class UpdateProfileRoleForm(forms.ModelForm):
     username = forms.CharField(
         max_length=150,

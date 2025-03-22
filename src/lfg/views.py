@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect, render
 from django.db import transaction
 
-from . import forms, tasks
+from . import forms
 from .models import LFGProfile
 from .utils import profile_activatable, new_lfg_user, lfg_profile_active, current_lfg_user
 from contestadmin.models import Contest
@@ -64,8 +64,6 @@ def activate_profile(request):
     request.user.lfgprofile.active = True
     request.user.lfgprofile.save()
 
-    # Schedule Discord profile role change(s)
-    tasks.manage_discord_lfg_role.delay(request.user.lfgprofile.get_discord_username(), request.user.lfgprofile.division, 'add')
     messages.success(request, 'Profile scheduled for activation.', fail_silently=True)
     
     return redirect('lfg_dashboard')
@@ -132,8 +130,6 @@ def deactivate_profile(request):
     request.user.lfgprofile.active = False
     request.user.lfgprofile.save()
 
-    # Schedule Discord profile role change(s)
-    tasks.manage_discord_lfg_role.delay(request.user.lfgprofile.get_discord_username(), request.user.lfgprofile.division, 'remove')
     messages.warning(request, 'Profile scheduled for deactivation.', fail_silently=True)
 
     return redirect('lfg_dashboard')
@@ -170,15 +166,6 @@ def manage_profile(request):
                 if lfg_profile.active:
                     lfg_profile.active = False
 
-                    # Get previous username
-                    username = profile_form['discord_username'].initial+'#'+str(profile_form['discord_discriminator'].initial)
-
-                    # Remove roles from previous username 
-                    if 'division' not in profile_form.changed_data:
-                        tasks.manage_discord_lfg_role.delay(username, lfg_profile.division, 'remove')
-                    else:
-                        tasks.manage_discord_lfg_role.delay(username, profile_form['division'].initial, 'remove')
-
                 messages.warning(request, 'Discord username changed. Profile reverification required.', fail_silently=True)
             # Discord username unchanged
             else:
@@ -186,16 +173,14 @@ def manage_profile(request):
                 if 'division' in profile_form.changed_data:
                     if lfg_profile.active: 
                         if profile_form.cleaned_data['division'] is not None:
-                            tasks.manage_discord_lfg_role.delay(lfg_profile.get_discord_username(), profile_form['division'].initial, 'swap')
+                            pass
                         else:
                             lfg_profile.active = False
                             
-                            tasks.manage_discord_lfg_role.delay(lfg_profile.get_discord_username(), profile_form['division'].initial, 'remove')
                             messages.warning(request, 'Profile deactivated because it is incomplete. Complete the blank field(s)  to reactivate.', fail_silently=True)
                 # Standing was updated
                 elif 'standing' in profile_form.changed_data and lfg_profile.active:
                     if profile_form.cleaned_data['standing'] is None:
-                        tasks.manage_discord_lfg_role.delay(lfg_profile.get_discord_username(), profile_form['division'].initial, 'remove')
                         messages.warning(request, 'Profile deactivated because it is incomplete. Complete the blank field(s)  to reactivate.', fail_silently=True)
 
             lfg_profile.completed = lfg_profile.is_completed()
