@@ -2,10 +2,6 @@
 
 The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https://icpc.global) style programming competitions hosted by the [Association for Computing Machinery Florida State University Student Chapter](https://fsu.acm.org). The suite is designed to work with a [DOMJudge](https://www.domjudge.org/) jury system by facilitating contest registration and management, generating contestant data files required by DOMjudge, and processing contest results. 
 
-### Development Update: January 2024
-
-Future development of this project has been handed off to the ACM at FSU chapter. Please reference `CONTRIBUTING.md` for additional information.
-
 # Features
 
 ### Contestants
@@ -101,3 +97,5 @@ We welcome contributions to the project! Check out `CONTRIBUTING.md` to learn ho
 - [Marlan McInnes-Taylor](https://github.com/mmcinnestaylor) *Creator*
 - [Daniel Riley](https://github.com/danielmriley)
 - [Preston Horne](https://github.com/prestonmhorne)
+- [Hoang Vu](https://github.com/hoangvu5)
+- [Aidan Collins](https://github.com/getsbuffer)
