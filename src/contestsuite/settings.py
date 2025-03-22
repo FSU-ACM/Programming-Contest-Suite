@@ -150,6 +150,9 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': get_secret('CACHE_LOCATION', 'redis://redis:6379/0'),
+        'OPTIONS': {
+            "PARSER_CLASS": "redis.connection.HiredisParser",
+        }
     }
 }
 
