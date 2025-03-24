@@ -1,6 +1,5 @@
 from contestsuite.settings import get_secret
 
-
 # Celery Flower configuration
 # https://flower.readthedocs.io/en/latest/config.html
 
@@ -13,7 +12,7 @@ broker_api = get_secret('FLOWER_BROKER_API', 'http://rabbitmq:15672/api/vhost')
 
 if not debug:
     basic_auth = [
-        get_secret('FLOWER_USER', 'contestadmin') + ':' + get_secret('FLOWER_PASSWORD', 'seminoles1!')
+        f"{get_secret('FLOWER_USER', 'contestadmin')}:{get_secret('FLOWER_PASSWORD', 'seminoles1!')}"
     ]
 
     if get_secret('FLOWER_COOKIE_KEY'):
