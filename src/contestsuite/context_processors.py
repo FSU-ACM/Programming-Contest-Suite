@@ -1,5 +1,4 @@
-from .settings import CACHE_TIMEOUT, DEBUG, GTAG, PCS_DOCS_URL
-
+from contestsuite.settings import CACHE_TIMEOUT, DEBUG, GTAG, PCS_DOCS_URL
 
 def app_settings(request):
     """
