@@ -8,22 +8,50 @@
 <h1 class="text-center">Sponsors</h1>
 
 {% if sponsors %}
-  <p class="text-center font-italic">This programming contest was made possible by...</p>
+  <p class="text-center font-italic">This programming contest is made possible by...</p>
 {% endif %}
+
+<style>
+  .sponsor-card {
+    height: 180px;
+    transition: transform 0.3s ease;
+    background-color: #189cc5;
+  }
+
+  .sponsor-card:hover {
+    transform: scale(1.02);
+  }
+
+  .sponsor-overlay {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.75);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .sponsor-card:hover .sponsor-overlay {
+    transform: translateY(0);
+  }
+</style>
 
 <div class="row mt-5">
   {% for sponsor in sponsors %}
-    <div class="col-md-4 mb-3">
-      <div class="text-center d-flex justify-content-center align-items-center" style="height: 85px; overflow: hidden;">
-        {% if sponsor.url %}
-        <a href="{{ sponsor.url }}" target="_blank" class="d-block mb-1">
-        {% endif %}
-          <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" style="width: 80%; height: auto; max-width: 400px;">
-        {% if sponsor.url %}
-        </a>
-        {% endif %}
-      </div>
-      <p class="mt-1 px-1 text-muted font-italic text-justify">{{ sponsor.message }}</p>
+    <div class="col-md-4 mb-4">
+      {% if sponsor.url %}
+      <a href="{{ sponsor.url }}" target="_blank">
+      {% endif %}
+        <div class="sponsor-card position-relative overflow-hidden rounded shadow-sm">
+          <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="p-2 w-100 h-100 d-block" style="object-fit: contain;">
+          <div class="sponsor-overlay p-3 position-absolute text-white text-center">
+            <h6 class="mb-2 font-weight-bold">{{ sponsor.name }}</h6>
+            <p class="mb-0 small font-italic">{{ sponsor.message }}</p>
+          </div>
+        </div>
+      {% if sponsor.url %}
+      </a>
+      {% endif %}
     </div>
   {% empty %}
     <p class="text-center text-muted font-italic">No sponsors available.</p>
