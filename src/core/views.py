@@ -43,7 +43,7 @@ class IndexTemplateView(TemplateView):
         
         # Get published announcements
         context['announcements'] = (Announcement.objects.filter(status=1))
-        context['sponsors'] = Sponsor.objects.all()
+        context['sponsors'] = Sponsor.objects.all().extra(select={'ranking_null': 'ranking IS NULL'}).order_by('ranking_null', 'ranking', 'name')
 
         # Get all courses
         context['courses'] = Course.objects.all()
@@ -144,5 +144,5 @@ class SponsorsTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['sponsors'] = Sponsor.objects.all()
+        context['sponsors'] = Sponsor.objects.all().extra(select={'ranking_null': 'ranking IS NULL'}).order_by('ranking_null', 'ranking', 'name')
         return context

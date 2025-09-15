@@ -102,7 +102,7 @@
               <h4 class="text-center">Sponsors</h4>
             </a>
             <div class="text-center">
-              {% for sponsor in sponsors %}
+              {% for sponsor in sponsors|slice:":4" %}
                 {% if sponsor.url %}
                 <a href="{{ sponsor.url }}" target="_blank">
                 {% endif %}
@@ -118,7 +118,7 @@
               <h4 class="text-center mt-3">Sponsors</h4>
             </a>
             <div class="text-center">
-              {% for sponsor in sponsors %}
+              {% for sponsor in sponsors|slice:":4" %}
                 {% if sponsor.url %}
                 <a href="{{ sponsor.url }}" target="_blank">
                 {% endif %}
