@@ -9,6 +9,7 @@ from contestsuite.settings import CACHE_TIMEOUT, DOMJUDGE_URL
 from register.models import Team
 from manager.models import Course, Profile
 from lfg.models import LFGProfile
+from core.models import Sponsor
 
 # Create your views here.
 
@@ -42,6 +43,8 @@ class IndexTemplateView(TemplateView):
         
         # Get published announcements
         context['announcements'] = (Announcement.objects.filter(status=1))
+        context['sponsors'] = Sponsor.objects.all().extra(select={'ranking_null': 'ranking IS NULL'}).order_by('ranking_null', 'ranking', 'name')
+
         # Get all courses
         context['courses'] = Course.objects.all()
 
@@ -130,4 +133,16 @@ class TeamsTemplateView(TemplateView):
         context['num_faculty_teams'] = faculty_teams_set.count()
         context['num_faculty_participants'] = participants_set.filter(team__faculty=True).count()
 
+        return context
+
+class SponsorsTemplateView(TemplateView):
+    """
+    View to display sponsors page.
+    """
+
+    template_name = 'core/sponsors.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sponsors'] = Sponsor.objects.all().extra(select={'ranking_null': 'ranking IS NULL'}).order_by('ranking_null', 'ranking', 'name')
         return context

@@ -1,0 +1,22 @@
+.sponsor-card {
+    height: 180px;
+    transition: transform 0.3s ease;
+    background-color: #189cc5;
+}
+
+.sponsor-card-no-link:hover {
+    cursor: default;
+}
+
+.sponsor-overlay {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.75);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.sponsor-card:hover .sponsor-overlay {
+    transform: translateY(0);
+}
