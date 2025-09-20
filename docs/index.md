@@ -32,17 +32,17 @@ The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https:/
     *Project background and development history*
 - **Deployment**  
     *Configuration and deployment guides*
-- **Usage**  
-    *User manuals for contestants, volunteers, and faculty*
-- **Contributors**  
-    *Development guides and reference*  
+- **User Manuals**  
+    *Guides for contestants, volunteers, and faculty*
 
 ## Contributing
 
-We welcome contributions to the project! Check out the [Contributor's Guide](https://github.com/FSU-ACM/Programming-Contest-Suite/blob/main/CONTRIBUTING.md) to learn how to get started. Additional development information is available in the [contributors section]({{ site.url }}/contributors/) of the documentation.
+We welcome contributions to the project! Check out the [Contributor's Guide](https://github.com/FSU-ACM/Programming-Contest-Suite/blob/main/CONTRIBUTING.md) to learn how to get started.
 
 ### Thank you to the contributors of the project!
 
 - [Marlan McInnes-Taylor](https://github.com/mmcinnestaylor) *Creator*
 - [Daniel Riley](https://github.com/danielmriley) 
 - [Preston Horne](https://github.com/prestonmhorne)
+- [Hoang Vu](https://github.com/hoangvu5)
+- [Aidan Collins](https://github.com/getsbuffer)
