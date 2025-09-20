@@ -10,7 +10,7 @@ The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https:/
 
 <span class="fs-5">
     [contest.cs.fsu.edu](https://contest.cs.fsu.edu){: .btn .btn-purple }
-    [View on GitHub](https://github.com/mmcinnestaylor/Programming-Contest-Suite){: .btn }
+    [View on GitHub](https://github.com/FSU-ACM/Programming-Contest-Suite){: .btn }
 </span>
 
 <hr>
@@ -39,7 +39,7 @@ The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https:/
 
 ## Contributing
 
-We welcome contributions to the project! Check out the [Contributor's Guide](https://github.com/mmcinnestaylor/Programming-Contest-Suite/blob/main/CONTRIBUTING.md) to learn how to get started. Additional development information is available in the [contributors section]({{ site.url }}/contributors/) of the documentation.
+We welcome contributions to the project! Check out the [Contributor's Guide](https://github.com/FSU-ACM/Programming-Contest-Suite/blob/main/CONTRIBUTING.md) to learn how to get started. Additional development information is available in the [contributors section]({{ site.url }}/contributors/) of the documentation.
 
 ### Thank you to the contributors of the project!
 

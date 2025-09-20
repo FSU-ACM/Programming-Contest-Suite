@@ -9,7 +9,7 @@ nav_order: 1
 # Contest Dashboard
 
 
-![Contest Dashboard](https://github.com/mmcinnestaylor/Programming-Contest-Suite/blob/14a068074f95fcf0c85f0edc7171f88f5cb64f4b/docs/assets/images/admin_dashboard.png?raw=true)
+![Contest Dashboard]({{ site.url }}/assets/images/admin_dashboard.png?raw=true)
 
 The Contest Dashboard centralizes many of the administrator actions available in the PCS. 
 
