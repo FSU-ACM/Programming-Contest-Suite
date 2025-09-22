@@ -176,8 +176,9 @@ class GenerateDJFiles(View):
     """
 
     def get(self, request):
-        tasks.generate_contest_files.delay()
-        messages.info(request, 'Generate Contest TSVs task scheduled. Refresh page in a few seconds use download link.', fail_silently=True)
+        file_format = request.GET.get('format', 'json') # default to json if not specified
+        tasks.generate_contest_files.delay(file_format) # no positional argument because of bug with delay function 
+        messages.info(request, f'Generate Contest {file_format.upper()}s task scheduled. Refresh page in a few seconds use download link.', fail_silently=True)
 
         return redirect('admin_dashboard')
 
