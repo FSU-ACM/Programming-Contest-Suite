@@ -74,7 +74,7 @@ class DownloadDJFiles(View):
         zip.close()
 
         response = HttpResponse(content_type="application/zip")
-        response['Content-Disposition'] = "attachment; filename=dj_tsv_files.zip"
+        response['Content-Disposition'] = "attachment; filename=dj_files.zip"
         
         in_memory.seek(0)    
         response.write(in_memory.read())
