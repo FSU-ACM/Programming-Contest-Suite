@@ -1,4 +1,5 @@
 import csv
+import json
 import os
 from itertools import islice
 from math import ceil, log10
@@ -74,15 +75,18 @@ def create_walkin_teams(division, total):
 
 @shared_task
 @transaction.atomic
-def generate_contest_files():
+def generate_contest_files(file_format='json'):
     """
     Celery task to create input files for the DOMjudge jury system.
         - Currently each division (U/L) is set up as a separate contest in DOMjudge
         - Generator creates necessary files (teams, accounts, groups) to set up a contest for each division
+        - Supports both TSV and JSON formats based on file_format parameter; defaults to json if not specified
 
-    https://www.domjudge.org/docs/manual/7.3/import.html
+    https://www.domjudge.org/docs/manual/8.3/import.html
     """
-    
+
+    logger.info(f"generate_contest_files called with file_format='{file_format}'") 
+
     teams = Team.objects.all()
 
     if teams.count() > 0:
@@ -98,60 +102,102 @@ def generate_contest_files():
 
         # Create DOMjudge contest files per division
         for division in Team.DIVISION:
-            if division[0] == 1:  # Upper
-                account_file = MEDIA_ROOT + '/contest_files/accounts_upper.tsv'
-                group_file = MEDIA_ROOT + '/contest_files/groups_upper.tsv'
-                team_file = MEDIA_ROOT + '/contest_files/teams_upper.tsv'
-            else:  # Lower
-                account_file = MEDIA_ROOT + '/contest_files/accounts_lower.tsv'
-                group_file = MEDIA_ROOT + '/contest_files/groups_lower.tsv'
-                team_file = MEDIA_ROOT + '/contest_files/teams_lower.tsv'
+            if division[0] == 1: # Upper
+                account_file = MEDIA_ROOT + f'/contest_files/accounts_upper.{file_format}' 
+                group_file = MEDIA_ROOT + f'/contest_files/groups_upper.{file_format}'
+                team_file = MEDIA_ROOT + f'/contest_files/teams_upper.{file_format}'
+            else: # Lower
+                account_file = MEDIA_ROOT + f'/contest_files/accounts_lower.{file_format}' 
+                group_file = MEDIA_ROOT + f'/contest_files/groups_lower.{file_format}'
+                team_file = MEDIA_ROOT + f'/contest_files/teams_lower.{file_format}'
 
-            with open(account_file, 'w', newline='') as account_tsv:
-                with open(group_file, 'w', newline='') as group_tsv:
-                    with open(team_file, 'w', newline='') as team_tsv:
-                        account_writer = csv.writer(
-                            account_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
-                        group_writer = csv.writer(
-                            group_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
-                        team_writer = csv.writer(
-                            team_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+            # Get teams for current division
+            teams = Team.objects.filter(division=division[0])
 
-                        # File headers
-                        account_writer.writerow(['accounts', '1'])
-                        group_writer.writerow(['File_Version', '1'])
-                        team_writer.writerow(['File_Version', '2'])
+            if file_format == 'json':
+                # create accounts, groups, and teams data structures
+                # groups are initialized with current division info
+                # Upper Division Group -> 6
+                # Lower Division Group -> 7
+                accounts_data = []
+                groups_data = [{
+                    'id': division[0]+5, # Category ID (int)
+                    'name': division[1] # Name of the team category (str)
+                }]
+                teams_data = []
 
-                        # Group info
-                        # Upper Division Group -> 6
-                        # Lower Division Group -> 7
-                        group_writer.writerow([
-                            division[0]+5,  # Category ID (int)
-                            division[1]  # Name of the team category (str)
-                        ])
+                for team in teams:
+                    accounts_data.append({
+                        'id': team.contest_id, # Account ID
+                        'username': team.contest_id, # DOMjudge Username (str)
+                        'password': team.contest_password, # DOMjudge Password (str)
+                        'type': 'team',  # User type (str): 'team' or 'judge'
+                        'team_id': int((team.contest_id).strip("acm-")), # Team Number (int)
+                        'name': team.contest_id, # Full name of the user (str)
+                        # 'ip' field optional and not used in our config
+                        # note: id, username, and name fields are redundant in our config. one or more of these fields could be removed
+                    })
+                    teams_data.append({
+                        'id': str(int((team.contest_id).strip("acm-"))), # Team number
+                        'icpc_id': '', # External ID ** not used in our config **
+                        'group_ids': [team.division + 5],  # Group ID  as a list
+                        'name': team.name, # Team name
+                        'organization_id': '' # External team affiliation ID(?) ** should revise for what this value should be **
+                    })
+                
+                # write data to respective files
+                with open(account_file, 'w') as account_json:
+                    json.dump(accounts_data, account_json, indent=2)
+                with open(group_file, 'w') as group_json:
+                    json.dump(groups_data, group_json, indent=2)
+                with open(team_file, 'w') as team_json:
+                    json.dump(teams_data, team_json, indent=2)
 
-                        # Write teams info for current division
-                        teams = Team.objects.filter(division=division[0])
-                        for team in teams:
-                            # Account info
-                            account_writer.writerow([
-                                'team',  # User type (str): 'team' or 'judge'
-                                team.contest_id,  # Full name of the user (str)
-                                team.contest_id,  # DOMjudge Username (str)
-                                team.contest_password,  # DOMjudge Password (str)
-                                int((team.contest_id).strip("acm-")), # Team Number (int)
+            else: # TSV format
+                with open(account_file, 'w', newline='') as account_tsv:
+                    with open(group_file, 'w', newline='') as group_tsv:
+                        with open(team_file, 'w', newline='') as team_tsv:
+                            account_writer = csv.writer(
+                                account_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+                            group_writer = csv.writer(
+                                group_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+                            team_writer = csv.writer(
+                                team_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+
+                            # File headers
+                            account_writer.writerow(['accounts', '1'])
+                            group_writer.writerow(['File_Version', '1'])
+                            team_writer.writerow(['File_Version', '2'])
+
+                            # Group info
+                            # Upper Division Group -> 6
+                            # Lower Division Group -> 7
+                            group_writer.writerow([
+                                division[0]+5,  # Category ID (int)
+                                division[1]  # Name of the team category (str)
                             ])
-                            # Team profile
-                            team_writer.writerow([
-                                int((team.contest_id).strip("acm-")), # Team Number (int)
-                                '', # External ID (int) ** not used in our config **
-                                team.division + 5, # Group ID (int)
-                                team.name, # Team name (str)
-                                'Florida State University', # Institution name (str)
-                                'FSU', # Institution short name (str)
-                                'USA', # Country code in ISO 3166-1 alpha-3 format
-                                '', # external institution ID ** not used in our config **
-                            ])
+
+                            # Write teams info for current division
+                            for team in teams:
+                                # Account info
+                                account_writer.writerow([
+                                    'team',  # User type (str): 'team' or 'judge'
+                                    team.contest_id,  # Full name of the user (str)
+                                    team.contest_id,  # DOMjudge Username (str)
+                                    team.contest_password,  # DOMjudge Password (str)
+                                    int((team.contest_id).strip("acm-")), # Team Number (int)
+                                ])
+                                # Team profile
+                                team_writer.writerow([
+                                    int((team.contest_id).strip("acm-")), # Team Number (int)
+                                    '', # External ID (int) ** not used in our config **
+                                    team.division + 5, # Group ID (int)
+                                    team.name, # Team name (str)
+                                    'Florida State University', # Institution name (str)
+                                    'FSU', # Institution short name (str)
+                                    'USA', # Country code in ISO 3166-1 alpha-3 format
+                                    '', # external institution ID ** not used in our config **
+                                ])
 
         logger.debug('Successfully generated contest files')
     else:
