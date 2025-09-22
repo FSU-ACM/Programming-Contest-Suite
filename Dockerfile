@@ -4,7 +4,7 @@ LABEL maintainer="ACM at FSU <contact@fsu.acm.org>"
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
-ARG REQUIREMENTS=requirements.txt
+ARG REQUIREMENTS=requirements-dev.txt
 
 RUN apt-get update \
   # Dependencies for building Python packages
