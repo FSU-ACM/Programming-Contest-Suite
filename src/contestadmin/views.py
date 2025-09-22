@@ -54,7 +54,7 @@ class DownloadExtraCreditFiles(View):
         return response
 
 
-class DownloadTSVFiles(View):
+class DownloadDJFiles(View):
     """
     View which aggregates all DOMjudge input files into a single ZIP file which is served for download.
     """
