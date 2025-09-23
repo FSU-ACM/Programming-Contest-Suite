@@ -1,9 +1,9 @@
 title: Programming Contest Suite
-description: Documentation for mmcinnestaylor/Programming-Contest-Suite
+description: Documentation for FSU-ACM/Programming-Contest-Suite
 theme: just-the-docs
-repository: mmcinnestaylor/Programming-Contest-Suite
+repository: FSU-ACM/Programming-Contest-Suite
 
-url: https://mmcinnestaylor.github.io/Programming-Contest-Suite/
+url: https://fsu-acm.github.io/Programming-Contest-Suite/
 
 # Set a path/url to a favicon that will be displayed by the browser
 favicon_ico: "/assets/images/favicon.ico"
@@ -41,7 +41,7 @@ enable_copy_code_button: true
 # Aux links for the upper right navigation
 aux_links:
   "PCS on GitHub":
-    - "//github.com/mmcinnestaylor/Programming-Contest-Suite"
+    - "//github.com/FSU-ACM/Programming-Contest-Suite"
 
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: true

@@ -1,5 +1,5 @@
 # Contributors Guide
-Thanks for your interest in contributing to the project! As of January 2024, development has been permanently handed off to the ACM at FSU chapter. Please visit [FSU-ACM/Programming-Contest-Suite](https://github.com/FSU-ACM/Programming-Contest-Suite) for the latest version of the project, and up-to-date contribution information.
+Thanks for your interest in contributing to the project!
 
 ## Frameworks and Tools
 

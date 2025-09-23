@@ -98,21 +98,35 @@
           </div>
           <!-- Sponsors Column -->
           <div class="col-md-4 border-left border-secondary d-none d-md-block my-3">
-            <h4 class="text-center">Sponsors</h4>
+            <a href="{% url 'sponsors' %}" class="text-decoration-none text-reset disabled">
+              <h4 class="text-center">Sponsors</h4>
+            </a>
             <div class="text-center">
-              <img src="{% static 'core/img/fsucslogo.png' %}" class="img-fluid w-75 my-2" alt="FSU CS Logo">
-              <img src="{% static 'core/img/L3Harris_logo.png' %}" class="img-fluid w-75 my-2" alt="L3Harris Logo">
-              <img src="{% static 'core/img/i2x.png' %}" class="img-fluid w-75 my-2" alt="i2x Solutions Logo">
-              <img src="{% static 'core/img/raymond_james.png' %}" class="img-fluid w-75 mt-2 mb-3" alt="Raymond James Logo">
+              {% for sponsor in sponsors|slice:":4" %}
+                {% if sponsor.url %}
+                <a href="{{ sponsor.url }}" target="_blank">
+                {% endif %}
+                  <img src="{{ sponsor.logo.url }}" class="img-fluid w-75 my-2" alt="{{ sponsor.name }}">
+                {% if sponsor.url %}
+                </a>
+                {% endif %}
+              {% endfor %}
             </div>
           </div>
           <div class="col-md-4 d-block d-md-none">
-            <h4 class="text-center mt-3">Sponsors</h4>
+            <a href="{% url 'sponsors' %}" class="text-decoration-none text-reset disabled">
+              <h4 class="text-center mt-3">Sponsors</h4>
+            </a>
             <div class="text-center">
-              <img src="{% static 'core/img/fsucslogo.png' %}" class="img-fluid w-75 my-2" alt="FSU CS Logo">
-              <img src="{% static 'core/img/L3Harris_logo.png' %}" class="img-fluid w-75 my-2" alt="L3Harris Logo">
-              <img src="{% static 'core/img/i2x.png' %}" class="img-fluid w-75 my-2" alt="i2x Solutions Logo">
-              <img src="{% static 'core/img/raymond_james.png' %}" class="img-fluid w-75 mt-2 mb-3" alt="Raymond James Logo">
+              {% for sponsor in sponsors|slice:":4" %}
+                {% if sponsor.url %}
+                <a href="{{ sponsor.url }}" target="_blank">
+                {% endif %}
+                  <img src="{{ sponsor.logo.url }}" class="img-fluid w-75 my-2" alt="{{ sponsor.name }}">
+                {% if sponsor.url %}
+                </a>
+                {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>          

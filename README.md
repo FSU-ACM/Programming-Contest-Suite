@@ -86,7 +86,7 @@ The following assumes `Programming-Contest-Suite/src` is the working directory.
 
 # Documentation
 
-All project documentation is available in `docs/`, and on our [documentation website](https://mmcinnestaylor.github.io/Programming-Contest-Suite/).
+All project documentation is available in `docs/`, and on our [documentation website](https://fsu-acm.github.io/Programming-Contest-Suite/).
 
 # Contributing
 

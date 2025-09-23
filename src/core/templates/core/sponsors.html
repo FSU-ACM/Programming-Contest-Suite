@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/sponsors.css' %}"/>
+{% endblock %}
+
+{% block section %}Sponsors{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center">Sponsors</h1>
+
+{% if sponsors %}
+    <p class="text-center font-italic">This programming contest is made possible by...</p>
+{% endif %}
+
+<div class="row mt-5">
+    {% for sponsor in sponsors %}
+        <div class="col-md-4 mb-4">
+            {% if sponsor.url %}
+            <a href="{{ sponsor.url }}" target="_blank">
+            {% endif %}
+                <div class="sponsor-card position-relative overflow-hidden rounded shadow-sm{% if not sponsor.url %} sponsor-card-no-link{% endif %}">
+                    <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="p-2 w-100 h-100 d-block" style="object-fit: contain;">
+                    <div class="sponsor-overlay p-3 position-absolute text-white text-center">
+                        <h6 class="mb-2 font-weight-bold">{{ sponsor.name }}</h6>
+                        <p class="mb-0 small font-italic">{{ sponsor.message }}</p>
+                    </div>
+                </div>
+            {% if sponsor.url %}
+            </a>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p class="text-center text-muted font-italic">No sponsors available.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
