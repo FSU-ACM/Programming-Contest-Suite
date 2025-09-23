@@ -9,7 +9,7 @@ nav_order: 1
 # Contest Dashboard
 
 
-![Contest Dashboard]({{ site.url }}/assets/images/admin_dashboard.png?raw=true)
+![Contest Dashboard](/assets/images/admin_dashboard.png?raw=true)
 
 The Contest Dashboard centralizes many of the administrator actions available in the PCS. 
 
