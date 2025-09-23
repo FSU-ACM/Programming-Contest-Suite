@@ -18,15 +18,15 @@ nav_order: 5
 
 ## Introduction
 
-Each contest is hosted by a group of volunteers who take on one of several roles: Docent, Proctor, Question Writer, or Contest Organizer. All volunteers are given access to the contest's check-in interfaces, and Contest Organizers have access to additional features detailed in the [Contest Administration]({{ site.url }}/usage/volunteers/contest_administration/) section. This manual documents the steps required to become a contest volunteer and participate as such on the day of the contest.
+Each contest is hosted by a group of volunteers who take on one of several roles: Docent, Proctor, Question Writer, or Contest Organizer. All volunteers are given access to the contest's check-in interfaces, and Contest Organizers have access to additional features detailed in the [Contest Administration](/usage/contest_administration/) section. This manual documents the steps required to become a contest volunteer and participate as such on the day of the contest.
 
 ## Participation Requirements
 
 In order to participate in a semester's contest as a volunteer, you **must** complete the following steps:
 
-1. Register an account <small>(ref [Account Registration]({{ site.url  }}/usage/account_registration.html))</small>
-2. Obtain a volunteer role <small>(ref. [Obtain Volunteer Status]({{ site.url }}/usage/volunteers.html#obtain-volunteer-status))</small>
-3. Complete volunteer check-in <small>(ref. [Volunteer Check-in]({{ site.url }}/usage/volunteers.html#volunteer-check-in))</small>
+1. Register an account <small>(ref [Account Registration](/usage/account_registration.html))</small>
+2. Obtain a volunteer role <small>(ref. [Obtain Volunteer Status](/usage/volunteers.html#obtain-volunteer-status))</small>
+3. Complete volunteer check-in <small>(ref. [Volunteer Check-in](/usage/volunteers.html#volunteer-check-in))</small>
 
 ---
 
@@ -97,10 +97,10 @@ All volunteers are expected to arrive at the venue on the day of the contest **b
 
 As a volunteer you should complete your check-in process using the Volunteer Check-in interface. When logged in as a volunteer, a link to the interface is accessible from the user dropdown menu located in site's navigation bar. The page may be accessed directly by navigating to `<site_url>/checkin/volunteer/`.
 
-![Navbar Volunteer Check-in]({{ site.url }}/assets/images/volunteers/navbar_volunteer_checkin.png?raw=true)
+![Navbar Volunteer Check-in](/assets/images/volunteers/navbar_volunteer_checkin.png?raw=true)
 
 ### Completing Check-in
 
 On or after Contest Day, and assuming you've fulfilled the participation requirements of your particular role, the Contest Organizers will provide you with a check-in passphase. You must enter this phrase along with your username into the check-in form then click *Submit* to successfuly record your participation.
 
-![Volunteer Check-in Form]({{ site.url }}/assets/images/volunteers/volunteer_checkin_form.png?raw=true)
+![Volunteer Check-in Form](/assets/images/volunteers/volunteer_checkin_form.png?raw=true)

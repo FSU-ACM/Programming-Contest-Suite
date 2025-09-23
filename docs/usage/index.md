@@ -10,7 +10,7 @@ has_children: true
 {: .important-title }
 > TLDR;
 >
-> All contestants and volunteers should review the [Account Registration]({{ site.url  }}/usage/account_registration.html) and [Account Management]({{ site.url  }}/usage/account_management.html) guides, which cover the steps required to complete your registration for a given semester's contest.
+> All contestants and volunteers should review the [Account Registration](/usage/account_registration.html) and [Account Management](/usage/account_management.html) guides, which cover the steps required to complete your registration for a given semester's contest.
 
 Welcome, and thanks for checking out the Programming Contest Suite (PCS)! The articles in this section comprise usage manuals for the various users of the PCS:
 

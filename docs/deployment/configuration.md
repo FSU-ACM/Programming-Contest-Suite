@@ -12,7 +12,7 @@ The PCS's main settings file[^1] and Flower settings file[^2] can be modified di
 
 ### Default Values
 
-Many of the default values used in the PCS's configuration files are designed for a Docker deployment similar to the examples in the [Docker Deployment]({{ site.url }}/deployment/docker/) section of this documentation. 
+Many of the default values used in the PCS's configuration files are designed for a Docker deployment similar to the examples in the [Docker Deployment](/deployment/docker/) section of this documentation. 
 
 {: .important-title }
 > Notation
@@ -114,7 +114,7 @@ The following variables, located in the main settings file[^1], map to miscellan
 Variable | Default | Description
 ---|---|---
 DOMJUDGE_URL | https://domjudge.cs.fsu.edu/public | Full URL of the DOMjudge server. Used for PCS homepage contest server status card.
-PCS_DOCS_URL | https://mmcinnestaylor.github.io/Programming-Contest-Suite | Base URL of the project's documentation website. Used to link registration guide and other manuals.
+PCS_DOCS_URL | https://fsu-acm.github.io/Programming-Contest-Suite | Base URL of the project's documentation website. Used to link registration guide and other manuals.
 HASHID_FIELD_SALT | a long string[^4] | [Docs](https://github.com/nshafer/django-hashid-field#hashid_field_salt) The `django-hashid-field` library is used to hash sensitive PCS database model fields.
 GTAG | None | [Google Analytics site tag](https://support.google.com/analytics/answer/12002338?hl=en)
 

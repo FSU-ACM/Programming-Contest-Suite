@@ -12,7 +12,7 @@ There are many ways to [deploy Django](https://docs.djangoproject.com/en/4.2/how
 {: .important-title }
 > Docker
 >
-> The project has been extenively tested with and includes files for deploying using [Docker](https://www.docker.com/). Please reference the project's [Docker documentation]({{ site.url }}/deployment/docker/) for usage information.
+> The project has been extenively tested with and includes files for deploying using [Docker](https://www.docker.com/). Please reference the project's [Docker documentation](/deployment/docker/) for usage information.
 
 ## Support Services
 

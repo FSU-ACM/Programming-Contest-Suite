@@ -29,17 +29,17 @@ Upon activating your account or subsequently logging into the site, you should b
 
 A link to your Account Dashboard is assessible from the user dropdown menu located in the site's navbar when you view the site while logged in. The dashboard may be accessed directly by navigating to `<site_url>/manage/`.
 
-![Navbar user dropdown]({{ site.url }}/assets/images/account/manage/navbar_user_dropdown_account.png?raw=true)
+![Navbar user dropdown](/assets/images/account/manage/navbar_user_dropdown_account.png?raw=true)
 
-The dashboard provides a central interface for managing account profile information, enrolled course selection, and team membership. The remainder of this article covers the *Profile* and *Courses* sections of the dashboard. The *Team* and *Team Members* sections are covered in the [Contestant Manual]({{ site.url }}/usage/contestants.html). 
+The dashboard provides a central interface for managing account profile information, enrolled course selection, and team membership. The remainder of this article covers the *Profile* and *Courses* sections of the dashboard. The *Team* and *Team Members* sections are covered in the [Contestant Manual](/usage/contestants.html). 
 
-![Account Dashboard]({{ site.url }}/assets/images/account/manage/account_dashboard.png?raw=true)
+![Account Dashboard](/assets/images/account/manage/account_dashboard.png?raw=true)
 
 ## Profile
 
 The Manage Profile page of your account allows you to edit your personal details, including the information you provided during registration, as well as other account settings. You may access the page by clicking the *Edit* button located in the bottom left corner of the Profile section of your Account Dashboard.
 
-![Profile Form]({{ site.url }}/assets/images/account/manage/manage_profile.png?raw=true)
+![Profile Form](/assets/images/account/manage/manage_profile.png?raw=true)
 
 After making changes to your profile, click the *Save* button located at the bottom of the form. The following reference details each field of your profile.
 
@@ -72,22 +72,22 @@ The My Courses page of your account is where you are (optionally) able to mark y
 
 After adding your FSU ID to your account's profile, and once registered courses are added to the database, you may access the My Courses page by clicking the *Add* button in the center of the Courses section of your Account Dashboard.
 
-![Add Courses]({{ site.url }}/assets/images/account/manage/add_courses.png?raw=true)
+![Add Courses](/assets/images/account/manage/add_courses.png?raw=true)
 
 Once you have selected your enrolled courses, save them to your profile by clicking *Select*.
 
-![Select Courses]({{ site.url }}/assets/images/account/manage/select_courses.png?raw=true)
+![Select Courses](/assets/images/account/manage/select_courses.png?raw=true)
 
 ### Managing Courses
 
 After making an initial course selection, you may edit or clear your selection by clicking the *Edit* or *Clear* buttons located in the bottom left corner of the Courses section of your Account Dashboard.
 
-![Edit Courses]({{ site.url }}/assets/images/account/manage/edit_courses.png?raw=true)
+![Edit Courses](/assets/images/account/manage/edit_courses.png?raw=true)
 
 ## Next Steps
 
-[Contestant Manual]({{ site.url }}/usage/contestants.html) - For those who intend to complete in a semester's content. Covers finalizing your registration and checking in on the day of the contest.
+[Contestant Manual](/usage/contestants.html) - For those who intend to complete in a semester's content. Covers finalizing your registration and checking in on the day of the contest.
 
-[Volunteer Manual]({{ site.url }}/usage/volunteers.html) - For those who intend to volunteer at a semester's contest. Covers gaining volunteer status, and checking in as a volunteer on the day of the contest.
+[Volunteer Manual](/usage/volunteers.html) - For those who intend to volunteer at a semester's contest. Covers gaining volunteer status, and checking in as a volunteer on the day of the contest.
 
 [^1]: This field is included in the participation reports sent to course instructors.
