@@ -114,35 +114,35 @@ def generate_contest_files(file_format='json'):
             # Get teams for current division
             teams = Team.objects.filter(division=division[0])
 
+            # create accounts, groups, and teams data structures
+            # groups are initialized with current division info
+            # Upper Division Group -> 6
+            # Lower Division Group -> 7
             if file_format == 'json':
-                # create accounts, groups, and teams data structures
-                # groups are initialized with current division info
-                # Upper Division Group -> 6
-                # Lower Division Group -> 7
                 accounts_data = []
                 groups_data = [{
-                    'id': division[0]+5, # Category ID (int)
+                    'id': str(division[0]+5), # Category ID (str)
                     'name': division[1] # Name of the team category (str)
                 }]
                 teams_data = []
 
                 for team in teams:
                     accounts_data.append({
-                        'id': team.contest_id, # Account ID
+                        'id': team.contest_id, # Account ID (str)
                         'username': team.contest_id, # DOMjudge Username (str)
                         'password': team.contest_password, # DOMjudge Password (str)
-                        'type': 'team',  # User type (str): 'team' or 'judge'
+                        'type': 'team',  # User type (str) - can be 'team' or 'judge'
                         'team_id': int((team.contest_id).strip("acm-")), # Team Number (int)
                         'name': team.contest_id, # Full name of the user (str)
                         # 'ip' field optional and not used in our config
-                        # note: id, username, and name fields are redundant in our config. one or more of these fields could be removed
                     })
                     teams_data.append({
-                        'id': str(int((team.contest_id).strip("acm-"))), # Team number
+                        'id': str(int((team.contest_id).strip("acm-"))), # Team number (str)
                         'icpc_id': '', # External ID ** not used in our config **
-                        'group_ids': [team.division + 5],  # Group ID  as a list
-                        'name': team.name, # Team name
-                        'organization_id': '' # External team affiliation ID(?) ** should revise for what this value should be **
+                        'group_ids': [str(team.division + 5)],  # Group ID  as a list of strings
+                        'name': team.name, # Team name (str)
+                        'organization_id': 'fsu' # External team affiliation ID (str)
+                        # An organization with "external id" set to 'fsu' must be created manually in DOMjudge admin
                     })
                 
                 # write data to respective files
