@@ -1,5 +1,6 @@
 import csv
 import json
+import yaml
 import os
 from itertools import islice
 from math import ceil, log10
@@ -118,7 +119,7 @@ def generate_contest_files(file_format='json'):
             # Groups are initialized with current division info
             # Upper Division Group -> 6
             # Lower Division Group -> 7
-            if file_format == 'json':
+            if file_format != 'tsv': # JSON or YAML 
                 accounts_data = []
                 groups_data = [{
                     'id': str(division[0]+5), # Category ID (str)
@@ -140,20 +141,28 @@ def generate_contest_files(file_format='json'):
                     # Team profile
                     teams_data.append({
                         'id': str(int((team.contest_id).strip("acm-"))), # Team number (str)
-                        'icpc_id': '', # External ID ** not used in our config **
                         'group_ids': [str(team.division + 5)],  # Group ID  as a list of strings
                         'name': team.name, # Team name (str)
                         'organization_id': 'fsu' # External team affiliation ID (str)
                         # An organization with "external id" set to 'fsu' must be created manually in DOMjudge admin
                     })
                 
-                # write data to respective files
-                with open(account_file, 'w') as account_json:
-                    json.dump(accounts_data, account_json, indent=2)
-                with open(group_file, 'w') as group_json:
-                    json.dump(groups_data, group_json, indent=2)
-                with open(team_file, 'w') as team_json:
-                    json.dump(teams_data, team_json, indent=2)
+                # write data 
+                if file_format == 'json':
+                    with open(account_file, 'w') as account_json:
+                        json.dump(accounts_data, account_json, indent=2)
+                    with open(group_file, 'w') as group_json:
+                        json.dump(groups_data, group_json, indent=2)
+                    with open(team_file, 'w') as team_json:
+                        json.dump(teams_data, team_json, indent=2)
+                
+                else: # YAML format
+                    with open(account_file, 'w') as account_yaml:
+                        yaml.dump(accounts_data, account_yaml, sort_keys=False)
+                    with open(group_file, 'w') as group_yaml:
+                        yaml.dump(groups_data, group_yaml, sort_keys=False)
+                    with open(team_file, 'w') as team_yaml:
+                        yaml.dump(teams_data, team_yaml, sort_keys=False)
 
             else: # TSV format
                 with open(account_file, 'w', newline='') as account_tsv:
@@ -187,7 +196,6 @@ def generate_contest_files(file_format='json'):
                                     team.contest_id,  # Full name of the user (str)
                                     team.contest_id,  # DOMjudge Username (str)
                                     team.contest_password,  # DOMjudge Password (str)
-                                    int((team.contest_id).strip("acm-")), # Team Number (int)
                                 ])
                                 # Team profile
                                 team_writer.writerow([

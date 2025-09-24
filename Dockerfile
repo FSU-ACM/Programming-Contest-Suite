@@ -21,10 +21,10 @@ RUN apt-get update \
 
 # Install requirements and create static file directories
 RUN pip install --upgrade pip
-COPY $REQUIREMENTS /tmp/requirements.txt
+COPY $REQUIREMENTS /tmp/requirements-dev.txt
 
-RUN pip install --no-cache-dir -r /tmp/requirements.txt \
-  && rm -rf /tmp/requirements.txt \
+RUN pip install --no-cache-dir -r /tmp/requirements-dev.txt \
+  && rm -rf /tmp/requirements-dev.txt \
   && useradd -U app_user \
   && install -d -m 0755 -o app_user -g app_user /app/static \
   && install -d -m 0755 -o app_user -g app_user /app/media \
