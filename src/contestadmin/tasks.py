@@ -115,7 +115,7 @@ def generate_contest_files(file_format='json'):
             teams = Team.objects.filter(division=division[0])
 
             # create accounts, groups, and teams data structures
-            # groups are initialized with current division info
+            # Groups are initialized with current division info
             # Upper Division Group -> 6
             # Lower Division Group -> 7
             if file_format == 'json':
@@ -127,6 +127,7 @@ def generate_contest_files(file_format='json'):
                 teams_data = []
 
                 for team in teams:
+                    # Account info
                     accounts_data.append({
                         'id': team.contest_id, # Account ID (str)
                         'username': team.contest_id, # DOMjudge Username (str)
@@ -136,6 +137,7 @@ def generate_contest_files(file_format='json'):
                         'name': team.contest_id, # Full name of the user (str)
                         # 'ip' field optional and not used in our config
                     })
+                    # Team profile
                     teams_data.append({
                         'id': str(int((team.contest_id).strip("acm-"))), # Team number (str)
                         'icpc_id': '', # External ID ** not used in our config **
