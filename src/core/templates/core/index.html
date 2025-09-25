@@ -286,6 +286,7 @@
                 <i class="fa-solid fa-user fa-fw"></i> Participants <span class="badge badge-light">{{ num_lower_participants }}</span>
                 <span class="sr-only">number of lower division participants</span>
               </button>
+              {% if num_faculty_teams > 0 %}
               <h5>Faculty Division</h5>
               <button type="button" class="btn  btn-sm btn-primary mr-2" disabled>
                 <i class="fa-solid fa-users fa-fw"></i> Teams <span class="badge badge-light">
@@ -296,6 +297,7 @@
                 <i class="fa-solid fa-user fa-fw"></i> Participants <span class="badge badge-light">{{ num_faculty_participants }}</span>
                 <span class="sr-only">number of faculty participants</span>
               </button>
+              {% endif %}
             </div>
           </div>
 
