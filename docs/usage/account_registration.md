@@ -29,11 +29,11 @@ Registering an account is the first step toward participating in a semester's pr
 
 A link to the account registration interface is accessible from the site's navbar when you access the site while not logged in. The interface may be accessed directly by navigating to `<site_url>/register/`.
 
-![Navbar Registration](/assets/images/account/register/navbar_register.png?raw=true)
+![Navbar Registration]({{ site.url }}/assets/images/account/register/navbar_register.png?raw=true)
 
 Read through the information on the preregistration page then click the *Proceed* button at the bottom of the page, at which point you will be directed to the registration form.
 
-![Account Registration Form](/assets/images/account/register/account_registration.png?raw=true)
+![Account Registration Form]({{ site.url }}/assets/images/account/register/account_registration.png?raw=true)
 
 - The email address you use during registration should be:  
     - A valid and working address 
@@ -52,4 +52,4 @@ Upon submitting the registration form, check the email address you provded for a
 
 ## Next Steps
 
-Once your account is activated, check out the [Account Management Guide](/usage/account_management.html) for information pertaining to completing your account setup!
+Once your account is activated, check out the [Account Management Guide]({{ site.url }}/usage/account_management.html) for information pertaining to completing your account setup!

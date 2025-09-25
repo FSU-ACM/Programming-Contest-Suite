@@ -9,7 +9,7 @@ nav_order: 2
 # Django Dashboard
 
 
-![Django Dashboard](/assets/images/django_dashboard.png?raw=true)
+![Django Dashboard]({{ site.url }}/assets/images/django_dashboard.png?raw=true)
 
 The Django Dashboard provides an interface for managing objects such as Sponsors and Contests. This centralized control panel is essential for tasks that cannot be handled within a Contest Dashboard.
 

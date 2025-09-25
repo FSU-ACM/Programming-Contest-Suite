@@ -12,7 +12,7 @@ The PCS's main settings file[^1] and Flower settings file[^2] can be modified di
 
 ### Default Values
 
-Many of the default values used in the PCS's configuration files are designed for a Docker deployment similar to the examples in the [Docker Deployment](/deployment/docker/) section of this documentation. 
+Many of the default values used in the PCS's configuration files are designed for a Docker deployment similar to the examples in the [Docker Deployment]({{ site.url }}/deployment/docker/) section of this documentation. 
 
 {: .important-title }
 > Notation

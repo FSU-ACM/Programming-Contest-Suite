@@ -34,10 +34,10 @@ Once a semester's contest concludes and the results are finalized, the organizer
 
 The link in the abovementioned email will direct you to your personalized Faculty Dashboard, which contains explanations of the various participant roles, the participation file formatting, and other relevant details. 
 
-![Faculty Dashboard](/assets/images/faculty/faculty_dashboard.png?raw=true)
+![Faculty Dashboard]({{ site.url }}/assets/images/faculty/faculty_dashboard.png?raw=true)
 
 ### Downloading Records
 
 A link to download your course specific participation files is available in the bottom left corner of the `your_name` section of your Faculty Dashboard.
 
-![Download Participation Files](/assets/images/faculty/download_files.png?raw=true)
+![Download Participation Files]({{ site.url }}/assets/images/faculty/download_files.png?raw=true)
