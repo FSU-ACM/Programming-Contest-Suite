@@ -110,6 +110,8 @@
                 {% if sponsor.url %}
                 </a>
                 {% endif %}
+              {% empty %}
+                <p class="text-muted font-italic">No sponsors have been announced.</p>
               {% endfor %}
             </div>
           </div>
