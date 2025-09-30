@@ -1,4 +1,6 @@
 import os
+from io import BytesIO
+from zipfile import ZipFile
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -12,12 +14,9 @@ from django.utils.http import urlsafe_base64_decode
 from django.shortcuts import redirect, render
 from django.views import View
 
-from io import BytesIO
-from zipfile import ZipFile
-
-from . import forms
-from . import tasks
-from .utils import contestadmin_auth, ContestAdminAuthMixin
+from contestadmin import forms
+from contestadmin import tasks
+from contestadmin.utils import contestadmin_auth, ContestAdminAuthMixin
 from contestadmin.models import Contest
 from contestsuite.settings import MEDIA_ROOT
 from lfg.models import LFGProfile
@@ -26,7 +25,7 @@ from register.models import Team
 
 # Create your views here.
 
-class DownloadExtraCreditFiles(View):
+class DownloadExtraCreditFiles(LoginRequiredMixin, ContestAdminAuthMixin, View):
     """
     View which aggregates all contest participation files into a single ZIP file which is served for download.
     """
@@ -54,7 +53,7 @@ class DownloadExtraCreditFiles(View):
         return response
 
 
-class DownloadDJFiles(View):
+class DownloadTSVFiles(LoginRequiredMixin, ContestAdminAuthMixin, View):
     """
     View which aggregates all DOMjudge input files into a single ZIP file which is served for download.
     """
@@ -82,7 +81,7 @@ class DownloadDJFiles(View):
         return response
 
 
-class EmailFaculty(View):
+class EmailFaculty(LoginRequiredMixin, ContestAdminAuthMixin, View):
     """
     View which schedules a Celery task to email faculty of participation file availability.
     """
@@ -170,7 +169,7 @@ class FacultyDashboard(View):
             return HttpResponse('Unable to serve extra credit files. Please try again later or contact the ACM team.')
 
 
-class GenerateDJFiles(LoginRequiredMixin, ContestAdminAuthMixin, View):
+class GenerateDomJudgeTSV(LoginRequiredMixin, ContestAdminAuthMixin, View):
     """
     View which schedules a Celery task to generate DOMjudge input files
     """
@@ -195,7 +194,7 @@ class GenerateDJFiles(LoginRequiredMixin, ContestAdminAuthMixin, View):
         return redirect('admin_dashboard')
 
 
-class GenerateExtraCreditReports(View):
+class GenerateExtraCreditReports(LoginRequiredMixin, ContestAdminAuthMixin, View):
     """
     View which schedules a Celery task to generate contest participation files.
     """
