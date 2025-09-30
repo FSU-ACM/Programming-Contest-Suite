@@ -2,8 +2,7 @@
 Functions useable by @user_passes_test view decorator
 """
 
-from django.core.exceptions import ObjectDoesNotExist
-from .models import LFGProfile
+from lfg.models import LFGProfile
 
 
 def profile_activatable(user):

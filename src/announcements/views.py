@@ -1,12 +1,8 @@
-from django.shortcuts import render
 from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
-from .models import Announcement
-
-# Create your views here.
-# https://docs.djangoproject.com/en/4.2/ref/class-based-views/generic-display/
+from announcements.models import Announcement
 
 
 class AnnouncementListView(ListView):

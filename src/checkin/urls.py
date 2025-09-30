@@ -1,6 +1,7 @@
 from django.urls import path
 
-from . import views
+from checkin import views
+
 
 urlpatterns = [
     path('', views.checkin, name='checkin'),

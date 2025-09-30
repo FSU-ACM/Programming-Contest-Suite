@@ -12,16 +12,13 @@ from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
 
-from . import forms
-from . import models
-from . import tasks
-from .tokens import account_activation_token
 from contestadmin.models import Contest
 from contestsuite.settings import CACHE_TIMEOUT
 from core.utils import make_random_password
 from manager.utils import has_no_team, not_registered
-
-# Create your views here.
+from register import forms
+from register import tasks
+from register.tokens import account_activation_token
 
 
 class ActivateAccount(View):

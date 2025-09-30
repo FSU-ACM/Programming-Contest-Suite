@@ -1,13 +1,12 @@
+from celery import shared_task
+from celery.utils.log import get_task_logger
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
-from celery import shared_task
-from celery.utils.log import get_task_logger
+from register.tokens import account_activation_token
 
-from .tokens import account_activation_token
 
 logger = get_task_logger(__name__)
 

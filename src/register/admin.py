@@ -1,8 +1,7 @@
 from django.contrib import admin
 
-from . import models
+from register import models
 
-# Register your models here.
 
 class TeamAdmin(admin.ModelAdmin):
     """

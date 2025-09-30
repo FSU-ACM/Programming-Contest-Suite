@@ -5,16 +5,15 @@ from django.db import transaction
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.db import transaction
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 
-from . import forms
-from .utils import team_admin, has_no_team, has_team, has_fsuid
-from .models import Course, Profile
 from announcements.models import Announcement
 from contestadmin.models import Contest
 from contestsuite.settings import CACHE_TIMEOUT
+from manager import forms
+from manager.utils import team_admin, has_no_team, has_team, has_fsuid
+from manager.models import Course, Profile
 
-# Create your views here.
 
 @login_required
 def dashboard(request):

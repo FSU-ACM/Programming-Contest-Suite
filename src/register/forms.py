@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from .models import Team
+from register.models import Team
+
 
 class ExtendedUserCreationForm(UserCreationForm):
     """

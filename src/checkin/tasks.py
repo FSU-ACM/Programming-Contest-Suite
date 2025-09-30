@@ -1,8 +1,7 @@
-from django.contrib.auth.models import User
-from django.template.loader import render_to_string
-
 from celery import shared_task
 from celery.utils.log import get_task_logger
+from django.contrib.auth.models import User
+from django.template.loader import render_to_string
 
 
 logger = get_task_logger(__name__)
