@@ -1,9 +1,9 @@
 from django.urls import path
 
-from . import views
+from manager import views
+
 
 urlpatterns = [
-    # contest suite homepage
     path('', views.dashboard, name='manage_dashboard'),
     path('courses/', views.manage_courses, name='manage_courses'),
     path('courses/clear/', views.clear_courses, name='clear_courses'),
