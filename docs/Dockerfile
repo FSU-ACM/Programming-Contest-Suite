@@ -4,9 +4,11 @@ RUN gem install bundler
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY Gemfile* .
 
 RUN bundle install
+
+COPY . .
 
 EXPOSE 4000
 
