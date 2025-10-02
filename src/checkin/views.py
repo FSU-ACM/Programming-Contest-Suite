@@ -181,6 +181,11 @@ def volunteer_checkin(request):
 			except:
 				messages.error(request, 'Username not found', fail_silently=True)
 			else:
+				# Validate user is a volunteer
+				if not user.profile.is_volunteer():
+					messages.error(request, f"{user.first_name}, you are not registered as a voluteer.", fail_silently=True)
+					return redirect('volunteer_checkin')
+
 				contest = cache.get_or_set(
                                     'contest_model', Contest.objects.first(), CACHE_TIMEOUT)
 				
