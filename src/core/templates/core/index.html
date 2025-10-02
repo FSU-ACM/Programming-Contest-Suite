@@ -104,7 +104,7 @@
             <div class="text-center">
               {% for sponsor in sponsors|slice:":4" %}
                 {% if sponsor.url %}
-                <a href="{{ sponsor.url }}" target="_blank">
+                <a href="{{ sponsor.url }}" target="_blank" rel="external noopener">
                 {% endif %}
                   <img src="{{ sponsor.logo.url }}" class="img-fluid w-75 my-2" alt="{{ sponsor.name }}">
                 {% if sponsor.url %}
