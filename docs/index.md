@@ -16,6 +16,7 @@ The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https:/
 <hr>
 
 ## User Manuals
+- [Contest Administration Manual]({{ site.url }}/usage/contest_administration/)
 - [Account Registration Guide]({{ site.url }}/usage/account_registration.html)
 - [Contestants]({{ site.url }}/usage/contestants.html) - Individuals who compete in a semester's contest  
 - [Volunteers]({{ site.url }}/usage/volunteers/) - Individuals who serve as a Docent, Proctor, Question Writer, or Contest Organizer  
@@ -33,7 +34,7 @@ The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https:/
 - **Deployment**  
     *Configuration and deployment guides*
 - **User Manuals**  
-    *Guides for contestants, volunteers, and faculty*
+    *Guides for contest administrators, contestants, volunteers, and faculty*
 
 ## Contributing
 
