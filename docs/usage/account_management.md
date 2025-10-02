@@ -90,4 +90,5 @@ After making an initial course selection, you may edit or clear your selection b
 
 [Volunteer Manual]({{ site.url }}/usage/volunteers.html) - For those who intend to volunteer at a semester's contest. Covers gaining volunteer status, and checking in as a volunteer on the day of the contest.
 
+---
 [^1]: This field is included in the participation reports sent to course instructors.

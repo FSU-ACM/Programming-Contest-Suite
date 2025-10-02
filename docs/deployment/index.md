@@ -27,5 +27,6 @@ The project settings file[^1] and Flower settings file[^2] specify the use of se
 - **RabbitMQ**  
     Message broker which brokers Celery tasks
 
+---
 [^1]: `Programming-Contest-Suite/src/contestsuite/settings.py`
 [^2]: `Programming-Contest-Suite/src/contestsuite/flowerconfig.py`
