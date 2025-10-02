@@ -19,7 +19,7 @@
     {% for sponsor in sponsors %}
         <div class="col-md-4 mb-4">
             {% if sponsor.url %}
-            <a href="{{ sponsor.url }}" target="_blank">
+            <a href="{{ sponsor.url }}" target="_blank" rel="external noopener">
             {% endif %}
                 <div class="sponsor-card position-relative overflow-hidden rounded shadow-sm{% if not sponsor.url %} sponsor-card-no-link{% endif %}">
                     <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="p-2 w-100 h-100 d-block" style="object-fit: contain;">
