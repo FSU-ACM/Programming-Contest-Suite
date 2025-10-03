@@ -54,7 +54,7 @@ class Contest(models.Model):
     results = models.FileField(upload_to='uploads/', blank=True)
     ec_processed = models.BooleanField(default=False)
     volunteer_pin = models.CharField(max_length=8, default='thankyou')
-    participation = models.PositiveSmallIntegerField(choices=FORMAT, blank=True, null=True)
+    participation = models.PositiveSmallIntegerField(choices=FORMAT, default=1)
     lfg_active = models.BooleanField(default=False)
     lunch_form_url = models.URLField(blank=True, null=True)
     order_tshirt_url = models.URLField(blank=True, null=True)
