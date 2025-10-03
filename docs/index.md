@@ -10,12 +10,13 @@ The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https:/
 
 <span class="fs-5">
     [contest.cs.fsu.edu](https://contest.cs.fsu.edu){: .btn .btn-purple }
-    [View on GitHub](https://github.com/mmcinnestaylor/Programming-Contest-Suite){: .btn }
+    [View on GitHub](https://github.com/FSU-ACM/Programming-Contest-Suite){: .btn }
 </span>
 
 <hr>
 
 ## User Manuals
+- [Contest Administration Manual]({{ site.url }}/usage/contest_administration/)
 - [Account Registration Guide]({{ site.url }}/usage/account_registration.html)
 - [Contestants]({{ site.url }}/usage/contestants.html) - Individuals who compete in a semester's contest  
 - [Volunteers]({{ site.url }}/usage/volunteers/) - Individuals who serve as a Docent, Proctor, Question Writer, or Contest Organizer  
@@ -32,17 +33,17 @@ The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https:/
     *Project background and development history*
 - **Deployment**  
     *Configuration and deployment guides*
-- **Usage**  
-    *User manuals for contestants, volunteers, and faculty*
-- **Contributors**  
-    *Development guides and reference*  
+- **User Manuals**  
+    *Guides for contest administrators, contestants, volunteers, and faculty*
 
 ## Contributing
 
-We welcome contributions to the project! Check out the [Contributor's Guide](https://github.com/mmcinnestaylor/Programming-Contest-Suite/blob/main/CONTRIBUTING.md) to learn how to get started. Additional development information is available in the [contributors section]({{ site.url }}/contributors/) of the documentation.
+We welcome contributions to the project! Check out the [Contributor's Guide](https://github.com/FSU-ACM/Programming-Contest-Suite/blob/main/CONTRIBUTING.md) to learn how to get started.
 
 ### Thank you to the contributors of the project!
 
 - [Marlan McInnes-Taylor](https://github.com/mmcinnestaylor) *Creator*
 - [Daniel Riley](https://github.com/danielmriley) 
 - [Preston Horne](https://github.com/prestonmhorne)
+- [Hoang Vu](https://github.com/hoangvu5)
+- [Aidan Collins](https://github.com/getsbuffer)

@@ -6,7 +6,7 @@ parent: Docker
 nav_order: 2
 ---
 
-The following [Docker Compose](https://docs.docker.com/compose/) deployment, suitable for development and testing, is available in the repository [here](https://github.com/mmcinnestaylor/Programming-Contest-Suite/tree/main/deploy).
+The following [Docker Compose](https://docs.docker.com/compose/) deployment, suitable for development and testing, is available in the repository [here](https://github.com/FSU-ACM/Programming-Contest-Suite/tree/main/deploy).
 
 ```yaml
 services:

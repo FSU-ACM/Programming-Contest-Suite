@@ -1,17 +1,15 @@
+import requests as req
 from django.core.cache import cache
 from django.views.generic.base import TemplateView
-
-import requests as req
 
 from announcements.models import Announcement
 from contestadmin.models import Contest
 from contestsuite.settings import CACHE_TIMEOUT, DOMJUDGE_URL
-from register.models import Team
-from manager.models import Course, Profile
-from lfg.models import LFGProfile
 from core.models import Sponsor
+from lfg.models import LFGProfile
+from manager.models import Course, Profile
+from register.models import Team
 
-# Create your views here.
 
 class IndexTemplateView(TemplateView):
     """
@@ -134,6 +132,7 @@ class TeamsTemplateView(TemplateView):
         context['num_faculty_participants'] = participants_set.filter(team__faculty=True).count()
 
         return context
+
 
 class SponsorsTemplateView(TemplateView):
     """

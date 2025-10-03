@@ -3,9 +3,8 @@ from import_export import fields, resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import ForeignKeyWidget
 
-from . import models
+from manager import models
 
-# Register your models here.
 
 class ProfileAdmin(admin.ModelAdmin):
     """

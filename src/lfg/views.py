@@ -6,13 +6,12 @@ from django.shortcuts import render
 from django.shortcuts import redirect, render
 from django.db import transaction
 
-from . import forms
-from .models import LFGProfile
-from .utils import profile_activatable, new_lfg_user, lfg_profile_active, current_lfg_user
 from contestadmin.models import Contest
 from contestsuite.settings import CACHE_TIMEOUT
+from lfg import forms
+from lfg.models import LFGProfile
+from lfg.utils import profile_activatable, new_lfg_user, lfg_profile_active, current_lfg_user
 
-# Create your views here.
 
 @login_required
 def dashboard(request):

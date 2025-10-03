@@ -2,18 +2,30 @@
 layout: default
 title: Contest Dashboard
 grand_parent: User Manuals
-parent: Contest Administration Manual
-nav_order: 1
+parent: Contest Administration
 ---
 
 # Contest Dashboard
+{: .no_toc }
 
+## Table of contents
+{: .no_toc .text-delta }
 
-![Contest Dashboard](https://github.com/mmcinnestaylor/Programming-Contest-Suite/blob/14a068074f95fcf0c85f0edc7171f88f5cb64f4b/docs/assets/images/admin_dashboard.png?raw=true)
+1. TOC
+{:toc}
 
-The Contest Dashboard centralizes many of the administrator actions available in the PCS. 
+---
 
-### Card Overview
+The Contest Dashboard centralizes many of the administrator actions available in the PCS. The interface may be accessed directly by navigating to `<site_url>/contestadmin/`.
+
+{: .important-title }
+> Dashboard access
+>
+> A user profile must be assigned the *Contest Organizer* role to access the the Contest Dashboard and Contest Statistics page.
+
+![Contest Dashboard]({{ site.url }}/assets/images/contest_administration/contest_dashboard.png?raw=true)
+
+## Dashboard Summary
 
 - **Pre-Contest**
     - Generate and download the DOMjudge TSV files required to populate the DOMserver database with contestant data
@@ -33,3 +45,7 @@ The Contest Dashboard centralizes many of the administrator actions available in
     - Mark a given team as a Faculty Team
 - **Volunteers**
     - Displays all volunteers registered in the system, whether they have registered for extra credit, and if they've checked into the contest
+
+## Contest Statistics
+
+The Contest Statistics page quantifies numerous PCS database features. The interface may be accessed directly by navigating to `<site_url>/contestadmin/statistics/`.

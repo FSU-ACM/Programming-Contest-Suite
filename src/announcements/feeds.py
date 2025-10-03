@@ -1,8 +1,7 @@
 from django.contrib.syndication.views import Feed
 from django.template.defaultfilters import truncatewords
-from django.urls import reverse
 
-from . import models
+from announcements import models
 
 
 class LatestAnnouncementsFeed(Feed):

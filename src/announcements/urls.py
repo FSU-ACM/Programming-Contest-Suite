@@ -1,7 +1,8 @@
 from django.urls import path
 
-from . import feeds
-from . import views
+from announcements import feeds
+from announcements import views
+
 
 urlpatterns = [
     path('', views.AnnouncementListView.as_view(), name='announcements'),
