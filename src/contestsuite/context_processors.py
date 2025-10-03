@@ -1,5 +1,6 @@
 from contestsuite.settings import CACHE_TIMEOUT, DEBUG, GTAG, PCS_DOCS_URL
 
+
 def app_settings(request):
     """
     Additional project settings added to the default context.

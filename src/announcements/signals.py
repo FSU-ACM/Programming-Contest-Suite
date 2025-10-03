@@ -1,8 +1,8 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from .models import Announcement
-from .tasks import email_annoucement, discord_announcement
+from announcements.models import Announcement
+from announcements.tasks import email_annoucement, discord_announcement
 
 
 @receiver(post_save, sender=Announcement)

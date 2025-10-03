@@ -1,8 +1,6 @@
 from django.contrib import admin
 
-from . import models
-
-# Register your models here.
+from lfg import models
 
 
 admin.site.register(models.DiscordMember)

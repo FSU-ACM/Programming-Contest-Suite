@@ -1,13 +1,11 @@
+from celery import shared_task
+from celery.utils.log import get_task_logger
+from discord import SyncWebhook, Embed
 from django.contrib.auth.models import User
 from django.core.mail import send_mass_mail
 from django.template.loader import render_to_string
 
-from celery import shared_task
-from celery.utils.log import get_task_logger
-
-from discord import SyncWebhook, Embed
-
-from .models import Announcement
+from announcements.models import Announcement
 from contestsuite.settings import ANNOUNCEMENT_WEBHOOK_URL, DEFAULT_FROM_EMAIL, ALLOWED_HOSTS
 
 

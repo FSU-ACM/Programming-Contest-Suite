@@ -1,21 +1,17 @@
 from django.contrib import messages
-from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.db import transaction
 from django.shortcuts import render, redirect
-
 from hashid_field import Hashid
 
-from . import forms
-from . import tasks
-from .utils import checkin_auth
+from checkin import forms
+from checkin import tasks
+from checkin.utils import checkin_auth
 from contestadmin.models import Contest
 from contestsuite.settings import CACHE_TIMEOUT
 from register.models import Team
-
-# Create your views here.
 
 
 @login_required

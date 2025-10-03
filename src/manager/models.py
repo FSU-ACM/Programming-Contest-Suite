@@ -1,11 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-
 from hashid_field import HashidField
 
 from register.models import Team
 
-# Create your models here.
 
 class Faculty(models.Model):
     """

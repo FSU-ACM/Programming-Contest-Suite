@@ -1,10 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.core.exceptions import ValidationError
 
-
-from .models import Profile, Course
+from manager.models import Profile
 from register.models import Team
 
 
