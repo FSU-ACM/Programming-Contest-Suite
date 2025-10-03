@@ -1,12 +1,14 @@
-FROM ruby:latest
+FROM ruby:3.3
 
 RUN gem install bundler
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY Gemfile* .
 
 RUN bundle install
+
+COPY . .
 
 EXPOSE 4000
 

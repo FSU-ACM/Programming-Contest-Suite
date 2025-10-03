@@ -118,6 +118,7 @@ PCS_DOCS_URL | https://mmcinnestaylor.github.io/Programming-Contest-Suite | Base
 HASHID_FIELD_SALT | a long string[^4] | [Docs](https://github.com/nshafer/django-hashid-field#hashid_field_salt) The `django-hashid-field` library is used to hash sensitive PCS database model fields.
 GTAG | None | [Google Analytics site tag](https://support.google.com/analytics/answer/12002338?hl=en)
 
+---
 [^1]: `Programming-Contest-Suite/src/contestsuite/settings.py`
 [^2]: `Programming-Contest-Suite/src/contestsuite/flowerconfig.py`
 [^3]: `86@j2=z!=&1r_hoqboog1#*mb$jx=9mf0uw#hrs@lw&7m34sqz`
