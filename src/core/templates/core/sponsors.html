@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load cache %}
 {% load static %}
 
 {% block head %}
@@ -11,32 +12,33 @@
 
 <h1 class="text-center">Sponsors</h1>
 
-{% if sponsors %}
-    <p class="text-center font-italic">This programming contest is made possible by...</p>
-{% endif %}
+{% cache CACHE_TIMEOUT sponsors %}
+    {% if sponsors %}
+        <p class="text-center font-italic">This programming contest is made possible by...</p>
+    {% endif %}
 
-<div class="row mt-5">
-    {% for sponsor in sponsors %}
-        <div class="col-md-4 mb-4">
-            {% if sponsor.url %}
-            <a href="{{ sponsor.url }}" target="_blank" rel="external noopener">
-            {% endif %}
-                <div class="sponsor-card position-relative overflow-hidden rounded shadow-sm{% if not sponsor.url %} sponsor-card-no-link{% endif %}">
-                    <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="p-2 w-100 h-100 d-block" style="object-fit: contain;">
-                    <div class="sponsor-overlay p-3 position-absolute text-white text-center">
-                        <h6 class="mb-2 font-weight-bold">{{ sponsor.name }}</h6>
-                        <p class="mb-0 small font-italic">{{ sponsor.message }}</p>
+    <div class="row mt-5">
+        {% for sponsor in sponsors %}
+            <div class="col-md-4 mb-4">
+                {% if sponsor.url %}
+                <a href="{{ sponsor.url }}" target="_blank" rel="external noopener">
+                {% endif %}
+                    <div class="sponsor-card position-relative overflow-hidden rounded shadow-sm{% if not sponsor.url %} sponsor-card-no-link{% endif %}">
+                        <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="p-2 w-100 h-100 d-block" style="object-fit: contain;">
+                        <div class="sponsor-overlay p-3 position-absolute text-white text-center">
+                            <h6 class="mb-2 font-weight-bold">{{ sponsor.name }}</h6>
+                            <p class="mb-0 small font-italic">{{ sponsor.message }}</p>
+                        </div>
                     </div>
-                </div>
-            {% if sponsor.url %}
-            </a>
-            {% endif %}
-        </div>
-    {% empty %}
-        <div class="col">
-            <p class="text-center text-muted font-italic">No sponsors have been announced.</p>
-        </div>
-    {% endfor %}
-</div>
-
+                {% if sponsor.url %}
+                </a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <div class="col">
+                <p class="text-center text-muted font-italic">No sponsors have been announced.</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endcache %}
 {% endblock %}
