@@ -104,12 +104,14 @@
             <div class="text-center">
               {% for sponsor in sponsors|slice:":4" %}
                 {% if sponsor.url %}
-                <a href="{{ sponsor.url }}" target="_blank">
+                <a href="{{ sponsor.url }}" target="_blank" rel="external noopener">
                 {% endif %}
                   <img src="{{ sponsor.logo.url }}" class="img-fluid w-75 my-2" alt="{{ sponsor.name }}">
                 {% if sponsor.url %}
                 </a>
                 {% endif %}
+              {% empty %}
+                <p class="text-muted font-italic">No sponsors have been announced.</p>
               {% endfor %}
             </div>
           </div>
@@ -284,6 +286,7 @@
                 <i class="fa-solid fa-user fa-fw"></i> Participants <span class="badge badge-light">{{ num_lower_participants }}</span>
                 <span class="sr-only">number of lower division participants</span>
               </button>
+              {% if num_faculty_teams > 0 %}
               <h5>Faculty Division</h5>
               <button type="button" class="btn  btn-sm btn-primary mr-2" disabled>
                 <i class="fa-solid fa-users fa-fw"></i> Teams <span class="badge badge-light">
@@ -294,6 +297,7 @@
                 <i class="fa-solid fa-user fa-fw"></i> Participants <span class="badge badge-light">{{ num_faculty_participants }}</span>
                 <span class="sr-only">number of faculty participants</span>
               </button>
+              {% endif %}
             </div>
           </div>
 
@@ -335,9 +339,7 @@
             emphasizing problem solving executed in code.
             Students, faculty, and staff from all majors and colleges are welcome.
             The competition lasts 5 hours, and teams are limited to 3 members.
-            The top teams from each division receive prizes,
-            which have previously included items such as Google Home Minis,
-            Amazon Echoes, Raspberry Pi's, Chromecasts, and ACM chapter t-shirts.
+            The top teams from each division may receive prizes such as gift cards, certificates, and shiny medals.
           </p>
           <h4 class="card-title">Volunteering</h4>
           <p class="card-text">
