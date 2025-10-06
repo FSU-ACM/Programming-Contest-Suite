@@ -175,10 +175,22 @@ class GenerateDJFiles(LoginRequiredMixin, ContestAdminAuthMixin, View):
     View which schedules a Celery task to generate DOMjudge input files
     """
 
-    def get(self, request):
-        file_format = request.GET.get('format', 'json') # default to json if not specified
-        tasks.generate_contest_files.delay(file_format) # no positional argument because of bug with delay function 
-        messages.info(request, f'Generate Contest {file_format.upper()}s task scheduled. Refresh page in a few seconds use download link.', fail_silently=True)
+    def post(self, request):
+        file_type_form = forms.GenerateContestFilesForm(request.POST)
+            
+        if file_type_form.is_valid():
+            file_format = file_type_form.cleaned_data['filetype']
+            if file_format == '1':
+                file_format = 'tsv'
+            elif file_format == '2':
+                file_format = 'json'
+            elif file_format == '3':
+                file_format = 'yaml'
+
+            tasks.generate_contest_files.delay(file_format=file_format) # no positional argument because of bug with delay function 
+            messages.info(request, f'Generate Contest {file_format.upper()}s task scheduled. Refresh page in a few seconds use download link.', fail_silently=True)
+        else:
+            messages.error(request, 'Invalid file type selection.', fail_silently=True)
 
         return redirect('admin_dashboard')
 
