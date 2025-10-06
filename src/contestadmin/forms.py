@@ -66,3 +66,12 @@ class UpdatePasswordForm(forms.Form):
         label='Username',
         help_text="Person's account username.")
     password = forms.CharField()
+    
+class GenerateContestFilesForm(forms.Form):
+    FILETYPE = (
+        (1, 'TSV'),
+        (2, 'JSON'),
+        (3, 'YAML')
+    )
+    
+    filetype = forms.ChoiceField(choices=FILETYPE) 
