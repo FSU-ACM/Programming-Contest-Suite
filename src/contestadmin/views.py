@@ -170,7 +170,7 @@ class FacultyDashboard(View):
             return HttpResponse('Unable to serve extra credit files. Please try again later or contact the ACM team.')
 
 
-class GenerateDJFiles(View):
+class GenerateDJFiles(LoginRequiredMixin, ContestAdminAuthMixin, View):
     """
     View which schedules a Celery task to generate DOMjudge input files
     """
