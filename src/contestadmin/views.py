@@ -273,6 +273,8 @@ def dashboard(request):
         profile_role_form = forms.UpdateProfileRoleForm(request.POST)
         account_status_form = forms.AccountStatusForm(request.POST)
         faculty_team_form = forms.DesignateFacultyTeamForm(request.POST)
+        # Create file_type_form for generating contest files
+        file_type_form = forms.GenerateContestFilesForm(request.POST)
 
         # Process walk-in team creation form
         if walkin_form.is_valid():
@@ -393,6 +395,7 @@ def dashboard(request):
         profile_role_form = forms.UpdateProfileRoleForm()
         account_status_form = forms.AccountStatusForm()
         faculty_team_form = forms.DesignateFacultyTeamForm()
+        file_type_form = forms.GenerateContestFilesForm() 
         
     
     # Determine if results files have been uploaded
@@ -427,6 +430,7 @@ def dashboard(request):
     context['profile_role_form'] = profile_role_form
     context['account_status_form'] = account_status_form
     context["faculty_team_form"] = faculty_team_form
+    context['file_type_form'] = file_type_form
 
     return render(request, 'contestadmin/dashboard.html', context)
 
