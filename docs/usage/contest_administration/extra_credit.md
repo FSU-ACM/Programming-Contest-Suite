@@ -20,7 +20,7 @@ The extra credit system allows users to attach one or more registered courses to
 
 ## Pre-contest
 
-The PCS database must be populated with course and faculty data before users can attach courses to their profile. *Course* and *Faculty* database entries are managed through the Django Administration interface. 
+The PCS database must be populated with course and faculty data before users can attach courses to their profile. *Course* and *Faculty* database entries are managed through the [Django Administration]({{ site.url }}/usage/contest_administration/django_administration.html) interface. 
 
 {: .important-title }
 > Initialization order
@@ -29,7 +29,7 @@ The PCS database must be populated with course and faculty data before users can
 
 ### Adding Faculty
 
-The *Faculty* database table stores the course instructors who register one or more courses with a semester's contest. From the Django Administration homepage, click the *Add* button located in the *Facultys* row of the *MANAGER* section. 
+The *Faculty* database table stores the course instructors who register one or more courses with a semester's contest. From the [Django Administration]({{ site.url }}/usage/contest_administration/django_administration.html) homepage, click the *Add* button located in the *Facultys* row of the *MANAGER* section. 
 
 {: .warning-title }
 > Email addresses
@@ -50,7 +50,7 @@ Each Faculty entry contains the following fields.
 
 ### Adding Courses
 
-The *Course* database table stores the courses that instructors register with a semester's contest. From the Django Administration homepage, click the *Add* button located in the *Courses* row of the *MANAGER* section. 
+The *Course* database table stores the courses that instructors register with a semester's contest. From the [Django Administration]({{ site.url }}/usage/contest_administration/django_administration.html) homepage, click the *Add* button located in the *Courses* row of the *MANAGER* section. 
 
 ### Course Attributes
 
@@ -64,7 +64,7 @@ The *Course* database table stores the courses that instructors register with a 
 
 ### Adding data in bulk
 
-*Course* and *Faculty* data may be added in bulk through the Django Administration interface. 
+*Course* and *Faculty* data may be added in bulk through the [Django Administration]({{ site.url }}/usage/contest_administration/django_administration.html) interface. 
 
 {: .important-title }
 > Import order
@@ -73,7 +73,7 @@ The *Course* database table stores the courses that instructors register with a 
 
 #### Faculty file
 
-From the Django Administration homepage, navigate to the *Faculty* table by clicking the *Facultys* button in the *MANAGER* section. On the *Faculty* table page, click the *IMPORT* button in the upper right hand corner of the interface. 
+From the [Django Administration]({{ site.url }}/usage/contest_administration/django_administration.html) homepage, navigate to the *Faculty* table by clicking the *Facultys* button in the *MANAGER* section. On the *Faculty* table page, click the *IMPORT* button in the upper right hand corner of the interface. 
 
 The PCS supports faculty bulk uploads in the following CSV format:  
 
@@ -94,7 +94,7 @@ A simple Python script to generate a faculty data CSV is located in the [PCS cod
 
 #### Course file
 
-From the Django Administration homepage, navigate to the *Course* table by clicking the *Courses* button in the *MANAGER* section. On the *Course* table page, click the *IMPORT* button in the upper right hand corner of the interface. The faculty member references in the course data file must already exist in the database.
+From the [Django Administration]({{ site.url }}/usage/contest_administration/django_administration.html) homepage, navigate to the *Course* table by clicking the *Courses* button in the *MANAGER* section. On the *Course* table page, click the *IMPORT* button in the upper right hand corner of the interface. The faculty member references in the course data file must already exist in the database.
 
 The PCS supports course bulk uploads in the following CSV format: 
 

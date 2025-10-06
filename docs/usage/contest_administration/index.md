@@ -13,7 +13,7 @@ The Programming Contest Suite (PCS) is designed to ease the administration of a 
 {: .important-title }
 > Management Interfaces
 >
-> A contest is managed through the [Django Administration]({{ site.url }}/usage/contest_administration/django_administration.html) and the [Contest Dashboard]({{ site.url }}/usage/contest_administration/contest_dashboard.html). 
+> A contest is managed through [Django Administration]({{ site.url }}/usage/contest_administration/django_administration.html) and the [Contest Dashboard]({{ site.url }}/usage/contest_administration/contest_dashboard.html). 
 
 ## Administration Flowchart
 
