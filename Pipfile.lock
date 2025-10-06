@@ -1,11 +1,7 @@
 {
     "_meta": {
         "hash": {
-<<<<<<< HEAD
-            "sha256": "c494f800d86408c18afec097a7e886c17bb99d171d5ed4ce92eaf33b632d284d"
-=======
             "sha256": "2a98f2505a4b499fed4c94d1e4229e3baa69d41c6ccdd76eed8275caa744f282"
->>>>>>> eb9d604 (Bumped dependencies, Django to 4.2.25)
         },
         "pipfile-spec": 6,
         "requires": {

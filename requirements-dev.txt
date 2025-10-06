@@ -38,16 +38,10 @@ prompt-toolkit==3.0.52; python_version >= '3.8'
 propcache==0.3.0; python_version >= '3.9'
 python-crontab==3.3.0
 python-dateutil==2.9.0.post0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'
-<<<<<<< HEAD
-pytz==2025.1
-pyyaml==6.0.2; python_version >= '3.8'
-redis==5.2.1; python_version >= '3.8'
-requests==2.32.3; python_version >= '3.8'
-=======
 pytz==2025.2
+pyyaml==6.0.2; python_version >= '3.8'
 redis==6.4.0; python_version >= '3.9'
 requests==2.32.5; python_version >= '3.9'
->>>>>>> eb9d604 (Bumped dependencies, Django to 4.2.25)
 six==1.17.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'
 sqlparse==0.5.3; python_version >= '3.8'
 tablib==3.8.0; python_version >= '3.9'

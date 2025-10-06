@@ -86,7 +86,11 @@ def generate_contest_files(file_format='json'):
     https://www.domjudge.org/docs/manual/8.3/import.html
     """
 
-    logger.info(f"generate_contest_files called with file_format='{file_format}'") 
+    logger.info(f"generate_contest_files called with file_format='{file_format}'")
+
+    for file in os.listdir(MEDIA_ROOT + '/contest_files/'): 
+        if file.endswith('.json') or file.endswith('.yaml') or file.endswith('.tsv'):
+            os.remove(os.path.join(MEDIA_ROOT + '/contest_files/', file))
 
     teams = Team.objects.all()
 
@@ -115,7 +119,7 @@ def generate_contest_files(file_format='json'):
             # Get teams for current division
             teams = Team.objects.filter(division=division[0])
 
-            # create accounts, groups, and teams data structures
+            # Create accounts, groups, and teams data structures
             # Groups are initialized with current division info
             # Upper Division Group -> 6
             # Lower Division Group -> 7
@@ -136,15 +140,14 @@ def generate_contest_files(file_format='json'):
                         'type': 'team',  # User type (str) - can be 'team' or 'judge'
                         'team_id': int((team.contest_id).strip("acm-")), # Team Number (int)
                         'name': team.contest_id, # Full name of the user (str)
-                        # 'ip' field optional and not used in our config
                     })
                     # Team profile
                     teams_data.append({
                         'id': str(int((team.contest_id).strip("acm-"))), # Team number (str)
                         'group_ids': [str(team.division + 5)],  # Group ID  as a list of strings
                         'name': team.name, # Team name (str)
-                        'organization_id': 'fsu' # External team affiliation ID (str)
-                        # An organization with "external id" set to 'fsu' must be created manually in DOMjudge admin
+                        'display_name': team.name, # Display name (not optional) (str)
+                        'organization_id': 'FSU' # External team affiliation ID (str)
                     })
                 
                 # write data 
@@ -206,7 +209,7 @@ def generate_contest_files(file_format='json'):
                                     'Florida State University', # Institution name (str)
                                     'FSU', # Institution short name (str)
                                     'USA', # Country code in ISO 3166-1 alpha-3 format
-                                    '', # external institution ID ** not used in our config **
+                                    '', # External institution ID ** not used in our config **
                                 ])
 
         logger.debug('Successfully generated contest files')
