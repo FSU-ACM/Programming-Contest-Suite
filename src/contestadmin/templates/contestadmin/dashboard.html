@@ -29,20 +29,11 @@
 					<button type="button" class="btn btn-primary btn-sm my-1" data-toggle="modal" data-target="#walkinModal"> <i class="fa-solid fa-person-walking fa-fw"></i> Create Walk-in teams</button>
 				</div>
 				<div class="row justify-content-center">
-					<form method="get" action="{% url 'gen_dj_files' %}" class="row justify-content-center" onsubmit="return confirm('Are you certain you want to generate the DOMjudge files?');">
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="format" id="formatTSV" value="tsv" checked>
-							<label class="form-check-label" for="formatTSV">.tsv</label>
+					<form method="post" action="{% url 'gen_dj_files' %}" onSubmit="return confirm('Are you certain you want to generate the DOMjudge files?');">
+						{% csrf_token %}
+						<div class="form-group text-center my-1">
+							{{ file_type_form.filetype }}
 						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="format" id="formatJSON" value="json">
-							<label class="form-check-label" for="formatJSON">.json</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="format" id="formatYAML" value="yaml">
-							<label class="form-check-label" for="formatYAML">.yaml</label>
-						</div>
-						<div class="w-100"></div>
 						<button type="submit" class="btn btn-primary btn-sm my-1">
 							<i class="fa-solid fa-file-circle-plus fa-fw"></i> Generate DOMjudge Files
 						</button>
