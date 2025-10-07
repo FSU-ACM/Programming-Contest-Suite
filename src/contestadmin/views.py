@@ -246,7 +246,6 @@ def dashboard(request):
         profile_role_form = forms.UpdateProfileRoleForm(request.POST)
         account_status_form = forms.AccountStatusForm(request.POST)
         faculty_team_form = forms.DesignateFacultyTeamForm(request.POST)
-        # Create file_type_form for generating contest files
         file_type_form = forms.GenerateContestFilesForm(request.POST)
 
         # Process walk-in team creation form
@@ -335,6 +334,21 @@ def dashboard(request):
             else:
                 messages.success(
                     request, 'Assigned team faculty status.', fail_silently=True)
+        # Process DOMjudge bulk-import file generation form
+        elif file_type_form.is_valid():
+            try:
+                file_format = file_type_form.cleaned_data['filetype']
+                if file_format == '1':
+                    file_format = 'tsv'
+                elif file_format == '2':
+                    file_format = 'json'
+                elif file_format == '3':
+                    file_format = 'yaml'
+            except:
+                messages.error(request, 'Invalid file type selection.', fail_silently=True)
+
+            tasks.generate_contest_files.delay(file_format=file_format) 
+            messages.info(request, f'Generate Contest {file_format.upper()}s task scheduled. Refresh page in a few seconds use download link.', fail_silently=True)
         # Process contest results file upload form
         elif file_form.is_valid():
             if Contest.objects.all().count() == 0:
