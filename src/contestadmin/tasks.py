@@ -85,7 +85,13 @@ def generate_contest_files(file_format='json'):
 
     https://www.domjudge.org/docs/manual/8.3/import.html
     """
-    
+
+    logger.info(f"generate_contest_files called with file_format='{file_format}'")
+
+    for file in os.listdir(MEDIA_ROOT + '/contest_files/'): 
+        if file.endswith('.json') or file.endswith('.yaml') or file.endswith('.tsv'):
+            os.remove(os.path.join(MEDIA_ROOT + '/contest_files/', file))
+
     teams = Team.objects.all()
 
     if teams.count() > 0:
