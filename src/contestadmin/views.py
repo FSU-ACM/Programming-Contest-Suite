@@ -73,7 +73,7 @@ class DownloadTSVFiles(LoginRequiredMixin, ContestAdminAuthMixin, View):
         zip.close()
 
         response = HttpResponse(content_type="application/zip")
-        response['Content-Disposition'] = "attachment; filename=dj_tsv_files.zip"
+        response['Content-Disposition'] = "attachment; filename=dj_files.zip"
         
         in_memory.seek(0)    
         response.write(in_memory.read())
@@ -168,19 +168,6 @@ class FacultyDashboard(View):
         else:
             return HttpResponse('Unable to serve extra credit files. Please try again later or contact the ACM team.')
 
-
-class GenerateDomJudgeTSV(LoginRequiredMixin, ContestAdminAuthMixin, View):
-    """
-    View which schedules a Celery task to generate DOMjudge input files
-    """
-
-    def get(self, request):
-        tasks.generate_contest_files.delay()
-        messages.info(request, 'Generate Contest TSVs task scheduled. Refresh page in a few seconds use download link.', fail_silently=True)
-
-        return redirect('admin_dashboard')
-
-
 class GenerateExtraCreditReports(LoginRequiredMixin, ContestAdminAuthMixin, View):
     """
     View which schedules a Celery task to generate contest participation files.
@@ -259,6 +246,7 @@ def dashboard(request):
         profile_role_form = forms.UpdateProfileRoleForm(request.POST)
         account_status_form = forms.AccountStatusForm(request.POST)
         faculty_team_form = forms.DesignateFacultyTeamForm(request.POST)
+        file_type_form = forms.GenerateContestFilesForm(request.POST)
 
         # Process walk-in team creation form
         if walkin_form.is_valid():
@@ -346,6 +334,21 @@ def dashboard(request):
             else:
                 messages.success(
                     request, 'Assigned team faculty status.', fail_silently=True)
+        # Process DOMjudge bulk-import file generation form
+        elif file_type_form.is_valid():
+            try:
+                file_format = file_type_form.cleaned_data['filetype']
+                if file_format == '1':
+                    file_format = 'tsv'
+                elif file_format == '2':
+                    file_format = 'json'
+                elif file_format == '3':
+                    file_format = 'yaml'
+            except:
+                messages.error(request, 'Invalid file type selection.', fail_silently=True)
+
+            tasks.generate_contest_files.delay(file_format=file_format) 
+            messages.info(request, f'Generate Contest {file_format.upper()}s task scheduled. Refresh page in a few seconds use download link.', fail_silently=True)
         # Process contest results file upload form
         elif file_form.is_valid():
             if Contest.objects.all().count() == 0:
@@ -379,6 +382,7 @@ def dashboard(request):
         profile_role_form = forms.UpdateProfileRoleForm()
         account_status_form = forms.AccountStatusForm()
         faculty_team_form = forms.DesignateFacultyTeamForm()
+        file_type_form = forms.GenerateContestFilesForm() 
         
     
     # Determine if results files have been uploaded
@@ -413,6 +417,7 @@ def dashboard(request):
     context['profile_role_form'] = profile_role_form
     context['account_status_form'] = account_status_form
     context["faculty_team_form"] = faculty_team_form
+    context['file_type_form'] = file_type_form
 
     return render(request, 'contestadmin/dashboard.html', context)
 
