@@ -31,12 +31,12 @@
 				<div class="row justify-content-center">
 					<form method="post" onSubmit="return confirm('Are you certain you want to generate the DOMjudge files?');">
 						{% csrf_token %}
-						div class="form-group text-center my-1">
+						<div class="form-group text-center my-1">
 							{% for file_type in file_type_form %}
 								<div class="form-check form-check-inline">
 									{{ file_type }}
 								</div>
-							{% endfor %}<
+							{% endfor %}
 						</div>
 						<button type="submit" class="btn btn-primary btn-sm my-1">
 							<i class="fa-solid fa-file-circle-plus fa-fw"></i> Generate DOMjudge Files
