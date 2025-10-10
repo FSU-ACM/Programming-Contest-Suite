@@ -76,13 +76,14 @@ def create_walkin_teams(division, total):
 
 @shared_task
 @transaction.atomic
-def generate_contest_files():
+def generate_contest_files(file_format='json'):
     """
     Celery task to create input files for the DOMjudge jury system.
         - Currently each division (U/L) is set up as a separate contest in DOMjudge
         - Generator creates necessary files (teams, accounts, groups) to set up a contest for each division
+        - Supports TSV, JSON, and YAML formats (file_format parameter); defaults to json if not specified
 
-    https://www.domjudge.org/docs/manual/7.3/import.html
+    https://www.domjudge.org/docs/manual/8.3/import.html
     """
     
     teams = Team.objects.all()
@@ -100,65 +101,114 @@ def generate_contest_files():
 
         # Create DOMjudge contest files per division
         for division in Team.DIVISION:
-            if division[0] == 1:  # Upper
-                account_file = MEDIA_ROOT + '/contest_files/accounts_upper.tsv'
-                group_file = MEDIA_ROOT + '/contest_files/groups_upper.tsv'
-                team_file = MEDIA_ROOT + '/contest_files/teams_upper.tsv'
-            else:  # Lower
-                account_file = MEDIA_ROOT + '/contest_files/accounts_lower.tsv'
-                group_file = MEDIA_ROOT + '/contest_files/groups_lower.tsv'
-                team_file = MEDIA_ROOT + '/contest_files/teams_lower.tsv'
+            if division[0] == 1: # Upper
+                account_file = MEDIA_ROOT + f'/contest_files/accounts_upper.{file_format}' 
+                group_file = MEDIA_ROOT + f'/contest_files/groups_upper.{file_format}'
+                team_file = MEDIA_ROOT + f'/contest_files/teams_upper.{file_format}'
+            else: # Lower
+                account_file = MEDIA_ROOT + f'/contest_files/accounts_lower.{file_format}' 
+                group_file = MEDIA_ROOT + f'/contest_files/groups_lower.{file_format}'
+                team_file = MEDIA_ROOT + f'/contest_files/teams_lower.{file_format}'
 
-            with open(account_file, 'w', newline='') as account_tsv:
-                with open(group_file, 'w', newline='') as group_tsv:
-                    with open(team_file, 'w', newline='') as team_tsv:
-                        account_writer = csv.writer(
-                            account_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
-                        group_writer = csv.writer(
-                            group_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
-                        team_writer = csv.writer(
-                            team_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+            # Get teams for current division
+            teams = Team.objects.filter(division=division[0])
 
-                        # File headers
-                        account_writer.writerow(['accounts', '1'])
-                        group_writer.writerow(['File_Version', '1'])
-                        team_writer.writerow(['File_Version', '2'])
+            # Create accounts, groups, and teams data structures
+            # Groups are initialized with current division info
+            # Upper Division Group -> 6
+            # Lower Division Group -> 7
+            if file_format != 'tsv': # JSON or YAML 
+                accounts_data = []
+                groups_data = [{
+                    'id': str(division[0]+5), # Category ID (str)
+                    'name': division[1] # Name of the team category (str)
+                }]
+                teams_data = []
 
-                        # Group info
-                        # Upper Division Group -> 6
-                        # Lower Division Group -> 7
-                        group_writer.writerow([
-                            division[0]+5,  # Category ID (int)
-                            division[1]  # Name of the team category (str)
-                        ])
+                for team in teams:
+                    # Account info
+                    accounts_data.append({
+                        'id': team.contest_id, # Account ID (str)
+                        'username': team.contest_id, # DOMjudge Username (str)
+                        'password': team.contest_password, # DOMjudge Password (str)
+                        'type': 'team',  # User type (str) - can be 'team' or 'judge'
+                        'team_id': int((team.contest_id).strip("acm-")), # Team Number (int)
+                        'name': team.contest_id, # Full name of the user (str)
+                    })
+                    # Team profile
+                    teams_data.append({
+                        'id': str(int((team.contest_id).strip("acm-"))), # Team number (str)
+                        'group_ids': [str(team.division + 5)],  # Group ID  as a list of strings
+                        'name': team.name, # Team name (str)
+                        'display_name': team.name, # Display name (not optional) (str)
+                        'organization_id': 'FSU' # External team affiliation ID (str)
+                    })
+                
+                # write data 
+                if file_format == 'json':
+                    with open(account_file, 'w') as account_json:
+                        json.dump(accounts_data, account_json, indent=2)
+                    with open(group_file, 'w') as group_json:
+                        json.dump(groups_data, group_json, indent=2)
+                    with open(team_file, 'w') as team_json:
+                        json.dump(teams_data, team_json, indent=2)
+                
+                else: # YAML format
+                    with open(account_file, 'w') as account_yaml:
+                        yaml.dump(accounts_data, account_yaml, sort_keys=False)
+                    with open(group_file, 'w') as group_yaml:
+                        yaml.dump(groups_data, group_yaml, sort_keys=False)
+                    with open(team_file, 'w') as team_yaml:
+                        yaml.dump(teams_data, team_yaml, sort_keys=False)
 
-                        # Write teams info for current division
-                        teams = Team.objects.filter(division=division[0])
-                        for team in teams:
-                            # Account info
-                            account_writer.writerow([
-                                'team',  # User type (str): 'team' or 'judge'
-                                team.contest_id,  # Full name of the user (str)
-                                team.contest_id,  # DOMjudge Username (str)
-                                team.contest_password,  # DOMjudge Password (str)
-                                int((team.contest_id).strip("acm-")), # Team Number (int)
+            else: # TSV format
+                with open(account_file, 'w', newline='') as account_tsv:
+                    with open(group_file, 'w', newline='') as group_tsv:
+                        with open(team_file, 'w', newline='') as team_tsv:
+                            account_writer = csv.writer(
+                                account_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+                            group_writer = csv.writer(
+                                group_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+                            team_writer = csv.writer(
+                                team_tsv, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+
+                            # File headers
+                            account_writer.writerow(['accounts', '1'])
+                            group_writer.writerow(['File_Version', '1'])
+                            team_writer.writerow(['File_Version', '2'])
+
+                            # Group info
+                            # Upper Division Group -> 6
+                            # Lower Division Group -> 7
+                            group_writer.writerow([
+                                division[0]+5,  # Category ID (int)
+                                division[1]  # Name of the team category (str)
                             ])
-                            # Team profile
-                            team_writer.writerow([
-                                int((team.contest_id).strip("acm-")), # Team Number (int)
-                                '', # External ID (int) ** not used in our config **
-                                team.division + 5, # Group ID (int)
-                                team.name, # Team name (str)
-                                'Florida State University', # Institution name (str)
-                                'FSU', # Institution short name (str)
-                                'USA', # Country code in ISO 3166-1 alpha-3 format
-                                '', # external institution ID ** not used in our config **
-                            ])
+
+                            # Write teams info for current division
+                            for team in teams:
+                                # Account info
+                                account_writer.writerow([
+                                    'team',  # User type (str): 'team' or 'judge'
+                                    team.contest_id,  # Full name of the user (str)
+                                    team.contest_id,  # DOMjudge Username (str)
+                                    team.contest_password,  # DOMjudge Password (str)
+                                ])
+                                # Team profile
+                                team_writer.writerow([
+                                    int((team.contest_id).strip("acm-")), # Team Number (int)
+                                    '', # External ID (int) ** not used in our config **
+                                    team.division + 5, # Group ID (int)
+                                    team.name, # Team name (str)
+                                    'Florida State University', # Institution name (str)
+                                    'FSU', # Institution short name (str)
+                                    'USA', # Country code in ISO 3166-1 alpha-3 format
+                                    '', # External institution ID ** not used in our config **
+                                ])
 
         logger.debug('Successfully generated contest files')
     else:
         logger.error("No Team objects exist in database.")
-
 
 @shared_task
 @transaction.atomic
