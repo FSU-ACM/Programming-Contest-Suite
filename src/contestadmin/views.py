@@ -168,19 +168,6 @@ class FacultyDashboard(View):
         else:
             return HttpResponse('Unable to serve extra credit files. Please try again later or contact the ACM team.')
 
-
-class GenerateDomJudgeTSV(LoginRequiredMixin, ContestAdminAuthMixin, View):
-    """
-    View which schedules a Celery task to generate DOMjudge input files
-    """
-
-    def get(self, request):
-        tasks.generate_contest_files.delay()
-        messages.info(request, 'Generate Contest TSVs task scheduled. Refresh page in a few seconds use download link.', fail_silently=True)
-
-        return redirect('admin_dashboard')
-
-
 class GenerateExtraCreditReports(LoginRequiredMixin, ContestAdminAuthMixin, View):
     """
     View which schedules a Celery task to generate contest participation files.
