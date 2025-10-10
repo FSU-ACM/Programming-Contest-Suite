@@ -144,6 +144,7 @@ def generate_contest_files(file_format='json'):
                     # Team profile
                     teams_data.append({
                         'id': str(int((team.contest_id).strip("acm-"))), # Team number (str)
+                        'icpc_id': str(int((team.contest_id).strip("acm-"))), # ICPC ID number (str)
                         'group_ids': [str(team.division + 5)],  # Group ID  as a list of strings
                         'name': team.name, # Team name (str)
                         'display_name': team.name, # Display name (not optional) (str)
@@ -203,7 +204,7 @@ def generate_contest_files(file_format='json'):
                                 # Team profile
                                 team_writer.writerow([
                                     int((team.contest_id).strip("acm-")), # Team Number (int)
-                                    '', # External ID (int) ** not used in our config **
+                                    int((team.contest_id).strip("acm-")), # External ID (int)
                                     team.division + 5, # Group ID (int)
                                     team.name, # Team name (str)
                                     'Florida State University', # Institution name (str)
