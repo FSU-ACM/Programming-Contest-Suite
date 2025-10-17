@@ -4,6 +4,8 @@
 # documentation.
 
 name: Publish Docker image
+permissions:
+  contents: read
 
 on:
   release:

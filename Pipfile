@@ -18,6 +18,7 @@ django-celery-beat = "*"
 flower = "*"
 discord-py = "==2.5.0"
 pillow = "*"
+pyyaml = "*"
 
 [dev-packages]
 

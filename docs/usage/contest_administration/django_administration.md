@@ -16,16 +16,20 @@ parent: Contest Administration
 
 ---
 
-The Django Administration provides an interface for managing objects such as Sponsors and Contests. This centralized control panel is essential for tasks that cannot be handled within a Contest Dashboard. The interface may be accessed directly by navigating to `<site_url>/admin/`.
+Django Administration provides an interface for managing the PCS database. This centralized control panel is essential for tasks that cannot be handled within the Contest Dashboard. The interface may be accessed directly by navigating to `<site_url>/admin/`.
+
+## Administration access
+
+A user profile must be assigned privileges to access Django Administration that are separate from the [Volunteer Roles]({{ site.url }}/usage/volunteers.html#volunteer-roles) assigned through the [Contest Dashboard]({{ site.url }}/usage/contest_administration/contest_dashboard.html). These privileges may be assigned in Django Administration by a user with appropriate access, such as a superuser. 
 
 {: .important-title }
-> Administration access
+> Docker deployment
 >
-> A user profile must be assigned the *Contest Organizer* role to access the Django Administration.
-
-![Django Administration]({{ site.url }}/assets/images/contest_administration/django_administration.png?raw=true)
+> When using a [Docker deployment]({{ site.url }}/deployment/docker/docker_image.html) of the PCS, a superuser account is created automatically during system initialization.
 
 ## Action Overview
+
+![Django Administration]({{ site.url }}/assets/images/contest_administration/django_administration.png?raw=true)
 
 - **Create Contests**
     - Create a contest for the semester.

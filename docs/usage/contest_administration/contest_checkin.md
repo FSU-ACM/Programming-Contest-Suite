@@ -91,7 +91,7 @@ On or after Contest Day, the Contest Organizers will provide each volunteer who 
 title: Volunteer Check-in Flow
 ---
 graph TD
-    A[<small>Check-in Form</small><br>Enter username and passphrase]--> B((Submission<br>Accepted?))
+    A[<small>Check-in Form</small><br>Enter Username and Volunteer PIN]--> B((Submission<br>Accepted?))
     B-->|Yes| C[/Participation recorded\]
 	B-->|No| D{<small>Correct entry</small><br>}
     D-->|Retry| A

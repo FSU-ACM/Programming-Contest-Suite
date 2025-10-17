@@ -25,6 +25,11 @@ Upon activating your account or subsequently logging into the site, you should b
 >
 > In order for your course instructor(s) to receive a record of your contest participation, you are required to complete the FSU ID section of your account profile, as well as select your enrolled coure(s) from the Courses list in your Account Dashboard. 
 
+{: .highlight-title }
+> Changing your password
+>
+> To update your account password, use the *Lost password* link on the log-in page. 
+
 ## Account Dashboard
 
 A link to your Account Dashboard is assessible from the user dropdown menu located in the site's navbar when you view the site while logged in. The dashboard may be accessed directly by navigating to `<site_url>/manage/`.

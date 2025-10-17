@@ -48,7 +48,7 @@ def checkin(request):
 				
 				is_walkin = True
 
-			# Process email form entry, if it has been made.
+			# Process swipe form entry, if it has been made.
 			if swipe_form.cleaned_data['fsu_num']:
 				if swipe_form.valid_read():
 					fsu_number = Hashid(swipe_form.parse())
@@ -60,8 +60,11 @@ def checkin(request):
 							request, 'Check in failed. FSU number not found. ', fail_silently=True)
 						messages.info(request, 'Retry using email check in.', fail_silently=True)
 					else:
+						# User has a volunteer role
+						if user.profile.is_volunteer():
+							messages.warning(request, f"{user.first_name}, you are a contest volunteer. Please use the Volunteer Check-in interface.", fail_silently=True)
 						# User already checked in
-						if user.profile.checked_in and not checkin_auth(user):
+						elif user.profile.checked_in and not checkin_auth(user):
 							messages.info(request, 'You are already checked in.',
 							              fail_silently=True)
 						# User exists but no team selection (walk-in/registered) provided
@@ -104,8 +107,11 @@ def checkin(request):
 					messages.error(
 						request, 'Check in failed. Email address not found.', fail_silently=True)
 				else:
+					# User has a volunteer role
+					if user.profile.is_volunteer():
+						messages.warning(request, f"{user.first_name}, you are a contest volunteer. Please use the Volunteer Check-in interface.", fail_silently=True)
 					# User already checked in
-					if user.profile.checked_in and not checkin_auth(user):
+					elif user.profile.checked_in and not checkin_auth(user):
 						messages.info(request, 'You are already checked in.', fail_silently=True)
 					# User exists but no team selection (walk-in/registered) provided
 					elif user.profile.team is None and not is_walkin:

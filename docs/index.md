@@ -47,3 +47,4 @@ We welcome contributions to the project! Check out the [Contributor's Guide](htt
 - [Preston Horne](https://github.com/prestonmhorne)
 - [Hoang Vu](https://github.com/hoangvu5)
 - [Aidan Collins](https://github.com/getsbuffer)
+- [Ramon Ortega](https://github.com/ramonicv)

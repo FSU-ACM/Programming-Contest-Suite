@@ -17,7 +17,7 @@ parent: Contest Administration
 
 ---
 
-The PCS supports the dissemination of simple text announcements to multiple distribution endpoints. Announcements are managed through the Django Administration interface. 
+The PCS supports the dissemination of simple text announcements to multiple distribution endpoints. Announcements are managed through the [Django Administration]({{ site.url }}/usage/contest_administration/django_administration.html) interface. 
 
 ##  Distribution Endpoints
 
