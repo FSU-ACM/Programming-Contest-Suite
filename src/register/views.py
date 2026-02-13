@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.cache import cache
 from django.db import transaction
-# from django.forms import formset_factory
+from django.forms import formset_factory
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.utils.encoding import force_str
@@ -90,29 +90,22 @@ def account(request):
 
 
 # key error on password1, more research required
-'''def group(request):
+def group(request):
     context = {}
-    UserFormSet = formset_factory(forms.ExtendedUserCreationForm, extra=3)
+    UserFormSet = formset_factory(forms.ExtendedUserCreationForm, extra=3, min_num=1, validate_min=True)
     
     if request.method == 'POST':
         formset = UserFormSet(request.POST)
         if formset.is_valid():
             for form in formset:
-                if form.is_valid():
-                    new_user = User(
-                        first_name=form.cleaned_data['first_name'], 
-                        last_name=form.cleaned_data['last_name'],
-                        username=form.cleaned_data['username'],
-                        email=form.cleaned_data['email'],
-                        password=form.cleaned_data['password1']
-                    )
-                    # new_user = form.save(commit=False)
-                    # new_user.password = form.cleaned_data['password1']
-                    new_user.save()
+                if form.cleaned_data:
+                    user = form.save(commit=False)
+                    user.is_active = False
+                    user.save()
             
             messages.success(
                 request, 'Accounts registered!')
-            return redirect('index')
+            return redirect('login')
         
         messages.error(
             request, 'Please correct the error(s) below.', fail_silently=True)
@@ -120,7 +113,7 @@ def account(request):
         formset = UserFormSet()
 
     context['formset'] = formset
-    return render(request, 'register/group_register_form.html', {'formset': formset})'''
+    return render(request, 'register/group_register_form.html', {'formset': formset})
 
 
 @login_required
