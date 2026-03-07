@@ -13,15 +13,15 @@
 	<h1 class="text-center">Registered Teams</h1>
 	<div class="row">
 		<div class="col">
-			<h2>Upper Division</h2>
+			<h2>Teams</h2>
 			<button type="button" class="btn  btn-sm btn-primary mr-2" disabled>
 				<i class="fa-solid fa-users fa-fw"></i> Teams <span class="badge badge-light">
-					{{ num_upper_teams }}</span>
-				<span class="sr-only">number of upper division teams</span>
+					{{ num_student_teams }}</span>
+				<span class="sr-only">number of student teams</span>
 			</button>
 			<button type="button" class="btn  btn-sm btn-info" disabled>
 				<i class="fa-solid fa-user fa-fw"></i> Participants <span class="badge badge-light">{{ num_upper_participants }}</span>
-				<span class="sr-only">number of upper division participants</span>
+				<span class="sr-only">number of student participants</span>
 			</button>			
 			<div class="table-responsive mt-2">
 				<table class="table table-sm table-striped shadow rounded">
@@ -34,7 +34,7 @@
 						</tr>
 					</thead>
 					<tbody class="bg-light">
-						{% for team in upper_teams %}
+						{% for team in student_teams %}
 						<tr>
 							<td>
 								{% if forloop.counter == 1 and contest.is_contest_complete %} 
@@ -56,79 +56,6 @@
 							<td>
 								<span class="d-block d-md-none ml-2"><small>
 									{% with team.get_members|last as last %}							
-										{% for member in team.get_members %}
-											{% if member == last %}
-												{{ member }}
-											{% else %}
-												{{ member }},&puncsp;
-											{% endif %}
-										{% endfor %}
-									{% endwith %}
-								</small></span>
-								<span class="d-none d-md-block ml-3"><small>
-									{% with team.get_members|last as last %}
-										{% for member in team.get_members %}
-											{% if member == last %}
-												{{ member }}
-											{% else %}
-												{{ member }},&puncsp;
-											{% endif %}
-										{% endfor %}
-									{% endwith %}
-								</small></span>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			<h2>Lower Division</h2>		
-			<button type="button" class="btn  btn-sm btn-primary mr-2" disabled>
-				<i class="fa-solid fa-users fa-fw"></i> Teams <span class="badge badge-light">
-					{{ num_lower_teams }}</span>
-				<span class="sr-only">number of lower division teams</span>
-			</button>
-			<button type="button" class="btn  btn-sm btn-info" disabled>
-				<i class="fa-solid fa-user fa-fw"></i> Participants <span class="badge badge-light">{{ num_lower_participants }}</span>
-				<span class="sr-only">number of lower division participants</span>
-			</button>
-			<div class="table-responsive mt-2">
-				<table class="table table-sm table-striped shadow ">
-					<thead class="thead-dark text-center">
-						<tr>
-							<th scope="col">Team Name</th>
-							<th scope="col">Questions Answered</th>
-							<th scope="col">Score</th>
-							<th scope="col">Team Members</th>
-						</tr>
-					</thead>
-					<tbody class="bg-light">
-						{% for team in lower_teams %}
-						<tr>
-							<td>
-								{% if forloop.counter == 1 and contest.is_contest_complete %} 
-									<span class="d-block d-md-none ml-1">🥇&nbsp;{{ team.name }}</span>
-									<span class="d-none d-md-block ml-3">🥇&nbsp;{{ team.name }}</span>
-								{% elif forloop.counter == 2 and contest.is_contest_complete %} 
-									<span class="d-block d-md-none ml-1">🥈&nbsp;{{ team.name }}</span>
-									<span class="d-none d-md-block ml-3">🥈&nbsp;{{ team.name }}</span>
-								{% elif forloop.counter == 3 and contest.is_contest_complete %} 
-									<span class="d-block d-md-none ml-1">🥉&nbsp;{{ team.name }}</span>
-									<span class="d-none d-md-block ml-3">🥉&nbsp;{{ team.name }}</span>
-								{% else %}
-									<span class="d-block d-md-none ml-1">{{ team.name }}</span>
-									<span class="d-none d-md-block ml-3">{{ team.name }}</span>
-								{% endif %}
-							</td>
-							<td class="text-center">{{ team.questions_answered }}</td>
-							<td class="text-center">{{ team.score }}</td>
-							<td>
-								<span class="d-block d-md-none ml-2"><small>
-									{% with team.get_members|last as last %}
 										{% for member in team.get_members %}
 											{% if member == last %}
 												{{ member }}
