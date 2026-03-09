@@ -497,7 +497,7 @@ def process_contest_results():
                     else:
                         team.questions_for_extra_credit = sum(
                                 1 for p in solved_problems
-                                if int(p.get("label", 0)) > 4
+                                if int(p.get("problem_id", 0)) > 4 # problem ids > 4 are eligible for extra credit for lower division teams
                         )    
                     
                     team.save()
