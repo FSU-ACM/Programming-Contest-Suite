@@ -24,7 +24,7 @@ class Team(models.Model):
 
     questions_for_extra_credit (PositiveSmallIntegerField): the number of contest packet questions the team successfully answered that they can receive extra credit from 
                                                             If a team's division is set to Lower Division, then all questions they answer will be eligible for extra credit
-                            f"Could not process contest results for team {id}")                                If a team's division is set to Upper Division, then only questions with ID > 4 will be eligible for extra credit
+                                                            If a team's division is set to Upper Division, then only questions with ID > 4 will be eligible for extra credit
 
     score (PositiveSmallIntegerField): the team's final DOMjudge score
 
