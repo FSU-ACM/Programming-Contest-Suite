@@ -478,14 +478,13 @@ def process_contest_results():
                 fill_width = ceil(log10(Team.objects.all().count())) # fill width defined by number of teams
                 id = f"acm-{team_id.zfill(fill_width)}" # set id to match contest_id field of Team model for lookup
                 try:
-                    logger.debug(f"Looking up team with contest_id: {id}")
-                    logger.debug(f"Existing contest IDs: {list(Team.objects.values_list('contest_id', flat=True))}")
                     team = Team.objects.get(contest_id=id)
 
                     score = row.get("score", {})
+                    problems = row.get("problems", [])
                     team.questions_answered = score.get("num_solved", 0)
-                    team.score = score.get("num_solved", 0)
-                    team.last_submission = score.get("total_time", 0)
+                    team.score = score.get("total_time", 0) # score = total time
+                    team.last_submission = max((p.get("time", 0) for p in problems), default=0) # get the problem that was solved at the latest time
 
                     solved_problems = [
                         p for p in row.get("problems", [])
