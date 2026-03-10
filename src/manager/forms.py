@@ -76,7 +76,7 @@ class ProfileForm(forms.ModelForm):
             'fsu_id': 'Excluding @fsu.edu ex: ab12c@fsu.edu -> ab12c',
             'fsu_num': 'Last 8 numbers on FSUCard. Exclude spaces.',
             'announcement_email_opt_out': 'Contest announcements delivered to your inbox.',
-            'passed_cop3330': 'This is used for internal purposes',
+            'passed_cop3330': 'Check this if you have passed COP3330, or you are a graduate CS student, CS faculty member, or an experienced programmer.',
         }
         error_messages = {
             'fsu_id': {
