@@ -87,6 +87,8 @@ def checkin(request):
 									walk_in_team.num_members += 1
 									walk_in_team.save()
 
+							user.profile.save()
+							user.profile.team.update_division()
 							user.save()
 
 							# Email user DOMjudge credentials
@@ -131,6 +133,8 @@ def checkin(request):
 								walk_in_team.num_members += 1
 								walk_in_team.save()
 
+						user.profile.save()
+						user.profile.team.update_division()
 						user.save()
 
 						# Email user DOMjudge credentials

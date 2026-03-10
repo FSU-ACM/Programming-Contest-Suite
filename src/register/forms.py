@@ -9,6 +9,7 @@ from register.models import Team
 class ExtendedUserCreationForm(UserCreationForm):
     """
     Extend built-in User form to include email, first name, and last name fields
+    Update 02/20/2026: also includes check for passed_cop3330 field
     """
     
     def validate_email(address):
@@ -20,9 +21,20 @@ class ExtendedUserCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=150, required=True)
 
+    PASSED_COP3330_CHOICES = (
+        (True, 'Yes'), 
+        (False, 'No')
+    )
+
+    passed_cop3330 = forms.TypedChoiceField(
+        choices=PASSED_COP3330_CHOICES,
+        label='Have you passed COP3330?',
+        help_text='Check this if you have passed COP3330, or you are a graduate CS student, CS faculty member, or an experienced programmer.'
+    )
+
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'email', 'username', 'passed_cop3330', 'password1', 'password2']
    
 
 class TeamForm(forms.ModelForm):
@@ -32,10 +44,9 @@ class TeamForm(forms.ModelForm):
     
     class Meta:
         model = Team
-        fields = ['name', 'division']
+        fields = ['name']
         help_texts = {
             'name': '30 characters max. Keep it PG-13 please!',
-            'division': 'The division in which your team will compete.',
         }
         error_messages = {
             'name': {

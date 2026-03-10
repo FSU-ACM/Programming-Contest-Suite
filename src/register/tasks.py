@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from django.conf import settings
 
 from register.tokens import account_activation_token
 
@@ -32,6 +33,7 @@ def send_validation_email(domain, username):
             'domain': domain,
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
+            'protocol': 'http' if settings.DEBUG else 'https',
         })
 
         user.email_user(subject, message)

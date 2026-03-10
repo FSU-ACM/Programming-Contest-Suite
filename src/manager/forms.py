@@ -60,17 +60,23 @@ class ProfileForm(forms.ModelForm):
             (False, 'Opt-in'),
             (True, 'Opt-out'),
         )   
+        PASSED_COP3330_CHOICES = (
+            (True, 'Yes'), 
+            (False, 'No')
+        )
         model = Profile
-        fields = ('fsu_id', 'fsu_num', 'announcement_email_opt_out')
+        fields = ('fsu_id', 'fsu_num', 'announcement_email_opt_out', 'passed_cop3330')
         labels = {
             'fsu_id': 'FSU ID',
             'fsu_num': 'FSU number',
             'announcement_email_opt_out': 'Announcement Emails',
+            'passed_cop3330': 'Passed COP3330',
         }
         help_texts = {
             'fsu_id': 'Excluding @fsu.edu ex: ab12c@fsu.edu -> ab12c',
             'fsu_num': 'Last 8 numbers on FSUCard. Exclude spaces.',
             'announcement_email_opt_out': 'Contest announcements delivered to your inbox.',
+            'passed_cop3330': 'Check this if you have passed COP3330, or you are a graduate CS student, CS faculty member, or an experienced programmer.',
         }
         error_messages = {
             'fsu_id': {
@@ -80,7 +86,7 @@ class ProfileForm(forms.ModelForm):
                 'max_length': "The number entered is too long.",
             },
         }
-        widgets = {'announcement_email_opt_out': forms.Select(choices=EMAIL_CHOICES)}
+        widgets = {'announcement_email_opt_out': forms.Select(choices=EMAIL_CHOICES), 'passed_cop3330': forms.Select(choices=PASSED_COP3330_CHOICES)}
 
     """
     Hack to populate the form with the existing FSU number.
@@ -118,10 +124,9 @@ class TeamForm(forms.ModelForm):
     
     class Meta:
         model = Team
-        fields = ('name', 'division')
+        fields = ['name']
         help_texts = {
             'name': '30 characters max. Keep it PG-13 please!',
-            'division': 'The division in which your team will compete.',
         }
 
     # Automatically check team name entry against reserved names

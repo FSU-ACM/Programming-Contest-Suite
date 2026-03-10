@@ -298,4 +298,4 @@ DOMJUDGE_URL = get_secret('DOMJUDGE_URL', 'https://domjudge.cs.fsu.edu/public')
 
 # Documentation website base URL for navbar and homepage documentation links
 
-PCS_DOCS_URL = get_secret('PCS_DOCS_URL', 'https://mmcinnestaylor.github.io/Programming-Contest-Suite')
+PCS_DOCS_URL = get_secret('PCS_DOCS_URL', 'https://fsu-acm.github.io/Programming-Contest-Suite')

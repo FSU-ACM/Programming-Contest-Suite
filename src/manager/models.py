@@ -94,6 +94,8 @@ class Profile(models.Model):
     email_confirmed (BooleanField): whether the user's email address has been confirmed
 
     announcement_email_opt_out (BooleanField): whether the user has opted out of receiving announcement emails
+    
+    passed_cop3330 (BooleanField): whether the user has passed COP3330, which determines the user's division if they are a contestant
     """
 
     ROLES = (
@@ -114,6 +116,7 @@ class Profile(models.Model):
     checked_in = models.BooleanField(default=False)
     email_confirmed = models.BooleanField(default=False)
     announcement_email_opt_out = models.BooleanField(default=False)
+    passed_cop3330 = models.BooleanField(default=False)
     
     def __str__(self):
         return (str(self.user.first_name) + ' ' + str(self.user.last_name))

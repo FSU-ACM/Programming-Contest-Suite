@@ -74,6 +74,13 @@
 					{% endif %}
 					<!--<li class="list-group-item"><span class="font-weight-bolder">Role:</span> {{ roles | return_item:user.profile.role }}</li>-->
 					<li class="list-group-item"><span class="font-weight-bolder">Role:</span> {{ user.profile.get_role }}
+					{% if user.profile.role == 1 %}
+						{% if user.profile.passed_cop3330 %}
+							<li class="list-group-item"><span class="font-weight-bolder">Passed COP3330:</span> <span>Yes</span></li>
+						{% else %}
+							<li class="list-group-item"><span class="font-weight-bolder">Passed COP3330:</span> <span></span>No</span></li>
+						{% endif %}
+					{% endif %}
 					</li>
 				</ul>
 			</div>

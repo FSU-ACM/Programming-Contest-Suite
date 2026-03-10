@@ -22,6 +22,10 @@ class Team(models.Model):
 
     questions_answered (PositiveSmallIntegerField): the number of contest packet questions the team successfully answered 
 
+    questions_for_extra_credit (PositiveSmallIntegerField): the number of contest packet questions the team successfully answered that they can receive extra credit from 
+                                                            If a team's division is set to Lower Division, then all questions they answer will be eligible for extra credit
+                                                            If a team's division is set to Upper Division, then only questions with ID > 4 will be eligible for extra credit
+
     score (PositiveSmallIntegerField): the team's final DOMjudge score
 
     last_submission (PositiveSmallIntegerField): the team's last submission time
@@ -42,6 +46,7 @@ class Team(models.Model):
     contest_id = models.CharField(max_length=7, unique=True, blank=True, null=True)
     contest_password = models.CharField(max_length=6, unique=True, blank=True, null=True)
     questions_answered = models.PositiveSmallIntegerField(default=0)
+    questions_for_extra_credit = models.PositiveSmallIntegerField(default=0) 
     score = models.PositiveSmallIntegerField(default=0)
     last_submission = models.PositiveSmallIntegerField(default=0)
     num_members = models.PositiveSmallIntegerField(default=0)
@@ -103,3 +108,16 @@ class Team(models.Model):
                 return True
         
         return False
+    
+    def update_division(self):
+        """
+        Auto-sets team division based on based on member profile
+        Div1 - If at least 1 member has passed_cop3330=True
+        Div2 - If no members have passed_cop3330=True
+        """
+        members = User.objects.filter(profile__team=self)
+        if members.filter(profile__passed_cop3330=True).exists():
+            self.division = 1
+        else:
+            self.division = 2
+        self.save()

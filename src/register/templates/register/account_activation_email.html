@@ -3,16 +3,16 @@ Hello {{ user.first_name }},
 
 Thank you for signing up for this semester's contest! Please follow the link below to activate your account:
 
-https://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{{ protocol }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 
 Check out the FAQ for information regarding how to complete your registration and sign up for extra credit:
-https://{{ domain }}{% url 'faq' %} 
+{{ protocol }}://{{ domain }}{% url 'faq' %} 
 
 Need help finding teammates? Consider participating in the Looking For Group service:
-https://{{ domain }}{% url 'lfg_dashboard' %}
+{{ protocol }}://{{ domain }}{% url 'lfg_dashboard' %}
 
 Finally, keep an eye on the Announcements section for the latest information from the contest organizers:
-https://{{ domain }}{% url 'announcements' %}
+{{ protocol }}://{{ domain }}{% url 'announcements' %}
 
 NOTE: Once the contest organizers create the lunch food preference survey, you will see a link to the form in the upper right hand corner of the Profile card in your Account Dashboard. We would greatly appreciate you completing the survey!
 

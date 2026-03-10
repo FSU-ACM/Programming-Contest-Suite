@@ -33,10 +33,10 @@ The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https:/
 
 Simply clone this repository: 
 
-	git clone https://github.com/mmcinnestaylor/Programming-Contest-Suite.git
+	git clone https://github.com/FSU-ACM/Programming-Contest-Suite.git
 
 
-Alternatively, download one of the versions available on the [releases](https://github.com/mmcinnestaylor/Programming-Contest-Suite/releases) page.  
+Alternatively, download one of the versions available on the [releases](https://github.com/FSU-ACM/Programming-Contest-Suite/releases) page.  
 
 # Deployment
 
@@ -100,3 +100,4 @@ We welcome contributions to the project! Check out `CONTRIBUTING.md` to learn ho
 - [Hoang Vu](https://github.com/hoangvu5)
 - [Aidan Collins](https://github.com/getsbuffer)
 - [Ramon Ortega](https://github.com/ramonicv)
+- [Ethan Anderson](https://github.com/the-sam-sepiol)
