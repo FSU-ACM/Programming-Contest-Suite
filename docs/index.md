@@ -48,3 +48,4 @@ We welcome contributions to the project! Check out the [Contributor's Guide](htt
 - [Hoang Vu](https://github.com/hoangvu5)
 - [Aidan Collins](https://github.com/getsbuffer)
 - [Ramon Ortega](https://github.com/ramonicv)
+- [Ethan Anderson](https://github.com/the-sam-sepiol)
