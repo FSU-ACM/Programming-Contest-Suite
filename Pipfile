@@ -19,6 +19,8 @@ flower = "*"
 discord-py = "==2.5.0"
 pillow = "*"
 pyyaml = "*"
+reportlab = "*"
+watchdog = "*"
 
 [dev-packages]
 
