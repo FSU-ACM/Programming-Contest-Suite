@@ -56,19 +56,11 @@ class IndexTemplateView(TemplateView):
         teams_set = Team.objects.all()
         participants_set = Profile.objects.all()
 
-        # Aggregate upper division team and participant info
-        upper_teams_set = teams_set.filter(division=1).filter(
-            faculty=False).exclude(num_members=0)
-        context['num_upper_teams'] = upper_teams_set.count()
-        context['num_upper_participants'] = participants_set.filter(
-            team__division=1).count()
-
-        #  Aggregate lower division team and participant info
-        lower_teams_set = teams_set.filter(division=2).filter(
-            faculty=False).exclude(num_members=0)
-        context['num_lower_teams'] = lower_teams_set.count()
-        context['num_lower_participants'] = participants_set.filter(
-            team__division=2).count()
+        # instead of sorting by a division, now we will sort by faculty=False
+        student_teams_set = teams_set.filter(faculty=False).exclude(num_members=0)
+        context['num_student_teams'] = student_teams_set.count()
+        context['num_student_participants'] = participants_set.filter(
+            team__faculty=False).count()
 
         # Aggregate faculty team and participant info
         faculty_teams_set = teams_set.filter(faculty=True).exclude(num_members=0)
@@ -113,17 +105,11 @@ class TeamsTemplateView(TemplateView):
         teams_set = Team.objects.all()
         participants_set = Profile.objects.all()
 
-        # Aggregate upper division team and participant info
-        upper_teams_set = teams_set.filter(division=1).filter(faculty=False).exclude(num_members=0)
-        context['upper_teams'] = upper_teams_set.order_by('-questions_answered', 'score', 'last_submission', 'name')
-        context['num_upper_teams'] = upper_teams_set.count()
-        context['num_upper_participants'] = participants_set.filter(team__division=1).count()
-
-        #  Aggregate lower division team and participant info
-        lower_teams_set = teams_set.filter(division=2).filter(faculty=False).exclude(num_members=0)
-        context['lower_teams'] = lower_teams_set.order_by('-questions_answered', 'score', 'last_submission', 'name')
-        context['num_lower_teams'] = lower_teams_set.count()
-        context['num_lower_participants'] = participants_set.filter(team__division=2).count()
+        # Sort by faculty=False to get all student teams regardless of Div
+        student_teams_set = teams_set.filter(faculty=False).exclude(num_members=0)
+        context['student_teams'] = student_teams_set.order_by('-questions_answered', 'score', 'last_submission', 'name')
+        context['num_student_teams'] = student_teams_set.count()
+        context['num_student_participants'] = participants_set.filter(team__faculty=False).count()
 
         # Aggregate faculty team and participant info
         faculty_teams_set = teams_set.filter(faculty=True).exclude(num_members=0)

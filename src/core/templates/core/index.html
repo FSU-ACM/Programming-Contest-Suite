@@ -266,25 +266,15 @@
               <i class="fa-regular fa-clipboard fa-fw"></i> Registration
             </div>
             <div class="card-body">
-              <h5>Upper Division</h5>
+              <h5>Student Division</h5>
               <button type="button" class="btn  btn-sm btn-primary mr-2 mb-3" disabled>
                 <i class="fa-solid fa-users fa-fw"></i> Teams <span class="badge badge-light">
-                  {{ num_upper_teams }}</span>
-                <span class="sr-only">number of upper division teams</span>
+                  {{ num_student_teams }}</span>
+                <span class="sr-only">number of student teams</span>
               </button>
               <button type="button" class="btn  btn-sm btn-info mb-3" disabled>
-                <i class="fa-solid fa-user fa-fw"></i> Participants <span class="badge badge-light">{{ num_upper_participants }}</span>
-                <span class="sr-only">number of upper division participants</span>
-              </button>
-              <h5>Lower Division</h5>
-              <button type="button" class="btn  btn-sm btn-primary mr-2 mb-3" disabled>
-                <i class="fa-solid fa-users fa-fw"></i> Teams <span class="badge badge-light">
-                  {{ num_lower_teams }}</span>
-                <span class="sr-only">number of lower division teams</span>
-              </button>
-              <button type="button" class="btn  btn-sm btn-info mb-3" disabled>
-                <i class="fa-solid fa-user fa-fw"></i> Participants <span class="badge badge-light">{{ num_lower_participants }}</span>
-                <span class="sr-only">number of lower division participants</span>
+                <i class="fa-solid fa-user fa-fw"></i> Participants <span class="badge badge-light">{{ num_student_participants }}</span>
+                <span class="sr-only">number of student participants</span>
               </button>
               {% if num_faculty_teams > 0 %}
               <h5>Faculty Division</h5>

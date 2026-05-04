@@ -28,7 +28,8 @@ class ExtendedUserCreationForm(UserCreationForm):
 
     passed_cop3330 = forms.TypedChoiceField(
         choices=PASSED_COP3330_CHOICES,
-        label='Have you passed COP3330?'
+        label='Have you passed COP3330?',
+        help_text='Check this if you have passed COP3330, or you are a graduate CS student, CS faculty member, or an experienced programmer.'
     )
 
     class Meta:
