@@ -32,12 +32,17 @@ if [ "$PROCESS_TYPE" = "server" ]; then
     fi
 elif [ "$PROCESS_TYPE" = "worker" ]; then
     if [ "$MODE" = "debug" ]; then
-    celery \
-        -A contestsuite \
-        worker \
-            --autoscale=10,1 \
-            -n worker@%n \
-            --loglevel DEBUG
+    watchmedo auto-restart \
+        --directory=. \
+        --pattern='*.py' \
+        --recursive \
+        -- \
+        celery \
+            -A contestsuite \
+            worker \
+                --pool=solo \
+                -n worker@%n \
+                --loglevel DEBUG
     else
         celery \
         -A contestsuite \

@@ -148,6 +148,8 @@
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item"><span class="font-weight-bolder">Name:</span> {{ user.profile.team.name }}</li>
 						<li class="list-group-item"><span class="font-weight-bolder">Division:</span> {{ user.profile.team.get_division }}</li>
+						<li class="list-group-item"><span class="font-weight-bolder">Questions Answered:</span> {{ user.profile.team.questions_answered }}</li>
+						<li class="list-group-item"><span class="font-weight-bolder">Score:</span> {{ user.profile.team.score }}</li>
 						{% if user.profile.team_admin %}
 							<li class="list-group-item"><span class="font-weight-bolder">Admin:</span> Yes</li>
 							<li class="list-group-item"><span class="font-weight-bolder">PIN:</span> {{ user.profile.team.pin }}</li>
@@ -181,6 +183,14 @@
 					<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa-solid fa-trash-can fa-fw"></i> Delete</button>
 				{% else %}
 					<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirmLeaveModal"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Leave</button>
+				{% endif %}
+				<hr class="my-2">
+				<form method="post" action="{% url 'generate_participation_certificate' %}">
+					{% csrf_token %}
+					<button type="submit" class="btn btn-success btn-sm"><i class="fa-solid fa-file-pdf fa-fw"></i> Generate participation certificate</button>
+				</form>
+				{% if certificate_available %}
+					<a class="btn btn-outline-success btn-sm mt-1" href="{% url 'download_participation_certificate' %}"><i class="fa-solid fa-download fa-fw"></i> Download certificate PDF</a>
 				{% endif %}
 			</div>
 			{% endif %}
