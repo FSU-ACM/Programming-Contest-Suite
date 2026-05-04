@@ -32,6 +32,48 @@
       content="ACM ICPC, ACM Programming Contest, FSU ICPC, FSU ACM ICPC, FSU Programming Contest, FSU ACM Programming Contest, FSU CS Programming Contest, Florida State ICPC, Florida State Programming Contest, Florida State CS Programming Contest, Florida State ACM Programming Contest, Florida State University Programming Contest, Florida State University ACM Programming Contest, Florida State University ICPC, Florida State University CS Programming Contest">
     <!-------------------------------------------------------------->
 
+    <!-- Open Graph Tags -->
+    {% block og_tags %}
+    <meta property="og:title" content="ACM at FSU Programming Contest">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/acm_fsu_diamond.png' %}">
+    <meta property="og:description" content="ACM at FSU Programming Contest Registration & Management">
+    <meta property="og:site_name" content="ACM at FSU Programming Contest">
+    {% endblock %}
+    <!-------------------------------------------------------------->
+
+    <!-- Twitter Card Tags -->
+    {% block twitter_tags %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ACM at FSU Programming Contest">
+    <meta name="twitter:description" content="ACM at FSU Programming Contest Registration & Management">
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/acm_fsu_diamond.png' %}">
+    {% endblock %}
+    <!-------------------------------------------------------------->
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ACM at Florida State University",
+      "url": "https://fsu.acm.org",
+      "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/acm_fsu_diamond.png' %}",
+      "sameAs": [
+        "https://www.facebook.com/ACMatFSU/",
+        "https://www.instagram.com/fsuacm/",
+        "https://discord.gg/4z3hNMA"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contest@fsu.acm.org",
+        "contactType": "Contest Inquiries"
+      }
+    }
+    </script>
+    <!-------------------------------------------------------------->
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'vendors/bootstrap/bootstrap.min.css' %}" type="text/css">
     <!-------------------------------------------------------------->
