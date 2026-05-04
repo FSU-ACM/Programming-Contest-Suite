@@ -134,6 +134,8 @@ dmypy.json
 # Django assets
 src/media/*
 src/static/*
+!src/media/certificate_assets/
+!src/media/certificate_assets/**
 
 # Jekyll 
 docs/_site
