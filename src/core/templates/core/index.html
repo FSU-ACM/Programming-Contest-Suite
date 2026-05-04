@@ -6,6 +6,47 @@
 <title>ACM at FSU Programming Contest</title>
 {% endblock %}
 
+{% block head %}
+<!-- Event Structured Data -->
+{% if contest %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "ACM at FSU Programming Contest",
+  "description": "An ICPC-style programming contest hosted semesterly by the Florida State University Association for Computing Machinery Student Chapter. Teams of up to 3 members compete to solve coding challenges.",
+  {% if contest.contest_date and contest.contest_start %}
+  "startDate": "{{ contest.contest_date|date:'Y-m-d' }}T{{ contest.contest_start|time:'H:i:s' }}",
+  {% endif %}
+  {% if contest.contest_date and contest.contest_end %}
+  "endDate": "{{ contest.contest_date|date:'Y-m-d' }}T{{ contest.contest_end|time:'H:i:s' }}",
+  {% endif %}
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "{% if contest.participation == 2 %}https://schema.org/OnlineEventAttendanceMode{% elif contest.participation == 3 %}https://schema.org/MixedEventAttendanceMode{% else %}https://schema.org/OfflineEventAttendanceMode{% endif %}",
+  "location": {
+    "@type": "Place",
+    "name": "James J. Love Building",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1017 Academic Way",
+      "addressLocality": "Tallahassee",
+      "addressRegion": "FL",
+      "postalCode": "32304",
+      "addressCountry": "US"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "ACM at Florida State University",
+    "url": "https://fsu.acm.org"
+  },
+  "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/acm_fsu_diamond.png' %}",
+  "url": "{{ request.scheme }}://{{ request.get_host }}{% url 'index' %}"
+}
+</script>
+{% endif %}
+{% endblock %}
+
 
 {% block content %}
 
