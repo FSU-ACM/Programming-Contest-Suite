@@ -1,5 +1,8 @@
+import datetime
+
 import requests as req
 from django.core.cache import cache
+from django.utils import timezone
 from django.views.generic.base import TemplateView
 
 from announcements.models import Announcement
@@ -9,6 +12,18 @@ from core.models import Sponsor
 from lfg.models import LFGProfile
 from manager.models import Course, Profile
 from register.models import Team
+
+
+def _contest_datetime_iso(contest, contest_time):
+    if not contest or not contest.contest_date or not contest_time:
+        return None
+
+    contest_datetime = datetime.datetime.combine(contest.contest_date, contest_time)
+    aware_datetime = timezone.make_aware(
+        contest_datetime,
+        timezone.get_current_timezone()
+    )
+    return aware_datetime.isoformat()
 
 
 class IndexTemplateView(TemplateView):
@@ -38,6 +53,14 @@ class IndexTemplateView(TemplateView):
         # Get contest object or set to None
         context['contest'] = cache.get_or_set(
             'contest_model', Contest.objects.first(), CACHE_TIMEOUT)
+        context['contest_start_iso'] = _contest_datetime_iso(
+            context['contest'],
+            context['contest'].contest_start if context['contest'] else None
+        )
+        context['contest_end_iso'] = _contest_datetime_iso(
+            context['contest'],
+            context['contest'].contest_end if context['contest'] else None
+        )
         
         # Get published announcements
         context['announcements'] = (Announcement.objects.filter(status=1))

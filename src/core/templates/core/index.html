@@ -15,11 +15,11 @@
   "@type": "Event",
   "name": "ACM at FSU Programming Contest",
   "description": "An ICPC-style programming contest hosted semesterly by the Florida State University Association for Computing Machinery Student Chapter. Teams of up to 3 members compete to solve coding challenges.",
-  {% if contest.contest_date and contest.contest_start %}
-  "startDate": "{{ contest.contest_date|date:'Y-m-d' }}T{{ contest.contest_start|time:'H:i:s' }}",
+  {% if contest_start_iso %}
+  "startDate": "{{ contest_start_iso }}",
   {% endif %}
-  {% if contest.contest_date and contest.contest_end %}
-  "endDate": "{{ contest.contest_date|date:'Y-m-d' }}T{{ contest.contest_end|time:'H:i:s' }}",
+  {% if contest_end_iso %}
+  "endDate": "{{ contest_end_iso }}",
   {% endif %}
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "{% if contest.participation == 2 %}https://schema.org/OnlineEventAttendanceMode{% elif contest.participation == 3 %}https://schema.org/MixedEventAttendanceMode{% else %}https://schema.org/OfflineEventAttendanceMode{% endif %}",
