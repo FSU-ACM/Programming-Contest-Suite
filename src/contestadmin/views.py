@@ -496,13 +496,13 @@ def contest_statistics(request):
 
     # LFG Divisions card data
     context['num_upper_lfg_profiles'] = LFGProfile.objects.filter(
-        division=1).count()
+        user__profile__passed_cop3330=True).count()
     context['num_upper_lfg_profiles_active'] = LFGProfile.objects.filter(
-        division=1).filter(active=True).count()
+        user__profile__passed_cop3330=True).filter(active=True).count()
     context['num_lower_lfg_profiles'] = LFGProfile.objects.filter(
-        division=2).count()
+        user__profile__passed_cop3330=False).count()
     context['num_lower_lfg_profiles_active'] = LFGProfile.objects.filter(
-        division=2).filter(active=True).count()
+        user__profile__passed_cop3330=False).filter(active=True).count()
 
     # Course card data
     context['courses'] = Course.objects.all()
