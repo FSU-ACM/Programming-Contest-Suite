@@ -40,7 +40,6 @@
 						{% if user.lfgprofile %}
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item"><span class="font-weight-bolder">Discord Username:</span> {{ user.lfgprofile.discord_username }}</li>
-								<li class="list-group-item"><span class="font-weight-bolder">Discord Discriminator:</span> {{ user.lfgprofile.discord_discriminator }}</li>
 								<li class="list-group-item"><span class="font-weight-bolder">Preferred Division:</span> {{ divisions | return_item:user.lfgprofile.division }}</li>
 								{% if user.lfgprofile.is_completed %}
 									{% if user.lfgprofile.verified %}
@@ -101,7 +100,7 @@
 	<div class="row mt-4">
 		<!-- Upper Division Table -->
 		<div class="col">
-			<h3>Preferred Division - Upper</h3>
+			<h3>Upper Division <small class="text-muted">(Passed COP3330)</small></h3>
 			<button type="button" class="btn  btn-sm btn-info" disabled>
 				<i class="fa-solid fa-user"></i> Participants <span class="badge badge-light">{{ lfg_upper_count }}</span>
 				<span class="sr-only">number of lower division participants</span>
@@ -147,7 +146,7 @@
 	<div class="row">	
 		<!-- Lower Division Table -->
 		<div class="col">
-			<h3>Preferred Division - Lower</h3>
+			<h3>Lower Division <small class="text-muted">(Has not passed COP3330)</small></h3>
 			<button type="button" class="btn  btn-sm btn-info" disabled>
 				<i class="fa-solid fa-user"></i> Participants <span class="badge badge-light">{{ lfg_lower_count }}</span>
 				<span class="sr-only">number of lower division participants</span>

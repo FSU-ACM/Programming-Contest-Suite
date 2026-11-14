@@ -33,9 +33,9 @@ def dashboard(request):
     context['divisions'] = {division[0]:division[1] for division in LFGProfile.DIVISION}
     # Gather LFG profiles by division
     context['lfg_upper'] = cache.get_or_set(
-        'lfg_dash_users_upper', LFGProfile.objects.filter(active=True).filter(division=1), CACHE_TIMEOUT)
+        'lfg_dash_users_upper', LFGProfile.objects.filter(active=True).filter(user__profile__passed_cop3330=True), CACHE_TIMEOUT)
     context['lfg_lower'] = cache.get_or_set(
-        'lfg_dash_users_lower', LFGProfile.objects.filter(active=True).filter(division=2), CACHE_TIMEOUT)
+        'lfg_dash_users_lower', LFGProfile.objects.filter(active=True).filter(user__profile__passed_cop3330=False), CACHE_TIMEOUT)
     # LFG Profile counts
     context['lfg_upper_count'] = context['lfg_upper'].count()
     context['lfg_lower_count'] = context['lfg_lower'].count()
@@ -159,7 +159,7 @@ def manage_profile(request):
             lfg_profile = profile_form.save(commit=False)
 
             # Discord username change: profile must be reverified and reactivated
-            if 'discord_username' in profile_form.changed_data or 'discord_discriminator' in profile_form.changed_data:
+            if 'discord_username' in profile_form.changed_data:
                 if lfg_profile.verified:
                     lfg_profile.verified = False
                 if lfg_profile.active:

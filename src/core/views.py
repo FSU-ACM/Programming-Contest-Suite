@@ -71,8 +71,8 @@ class IndexTemplateView(TemplateView):
 
         if context['contest'] and context['contest'].lfg_active:
             # Get Looking For Group profile totals
-            context['lfg_profiles_upper'] = LFGProfile.objects.filter(active=True).filter(division=1).count()
-            context['lfg_profiles_lower'] = LFGProfile.objects.filter(active=True).filter(division=2).count()
+            context['lfg_profiles_upper'] = LFGProfile.objects.filter(active=True).filter(user__profile__passed_cop3330=True).count()
+            context['lfg_profiles_lower'] = LFGProfile.objects.filter(active=True).filter(user__profile__passed_cop3330=False).count()
 
         ### Teams ###
 
