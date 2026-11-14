@@ -121,3 +121,35 @@ The contest's organizers will check in all contestants automatically, at which p
 ### Access DOMjudge
 
 Links to the contest server are located on the site's homepage in the Contest Server Status section as well as in the Resources section of the site's navbar. Guides for using DOMjudge also are available in the Resources section of the site's navbar.
+
+---
+
+## Post-Contest
+
+### Participation Certificate
+
+After the contest concludes, team members may generate and download a personalized participation certificate PDF from their Account Dashboard. The certificate includes:
+
+- Contestant name
+- Final placement within division
+- Division
+- Number of questions answered
+- Team name
+
+{: .important-title }
+> Requirement
+>
+> You must be a member of a registered team in order to generate a certificate. The certificate reflects your team's results as recorded at the time of generation.
+
+#### Generate a Certificate
+
+1. Navigate to your **Account Dashboard** (`/manage/`).
+2. In the **Team** section, click the **Generate participation certificate** button.
+3. Certificate generation runs in the background via Celery. Wait a few seconds, then **refresh the page**.
+
+#### Download a Certificate
+
+Once generated, a **Download certificate PDF** button will appear in the Team section of your Account Dashboard. Click it to download the certificate as a PDF file.
+
+{: .note }
+> If you regenerate your certificate after results are updated (e.g., placement or questions answered changes), the downloaded PDF will reflect the latest data.

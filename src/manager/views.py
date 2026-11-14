@@ -1,16 +1,17 @@
+import os
+
 from django.contrib import messages
 from django.core.cache import cache
 from django.shortcuts import redirect, render
 from django.db import transaction
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
-from django.db import transaction
-from django.shortcuts import redirect, render
+from django.http import FileResponse, Http404
 
 from announcements.models import Announcement
 from contestadmin.models import Contest
-from contestsuite.settings import CACHE_TIMEOUT
-from manager import forms
+from contestsuite.settings import CACHE_TIMEOUT, MEDIA_ROOT
+from manager import forms, tasks
 from manager.utils import team_admin, has_no_team, has_team, has_fsuid
 from manager.models import Course, Profile
 
@@ -36,6 +37,15 @@ def dashboard(request):
     context['total_num_courses'] = cache.get_or_set('manage_dash_courses_total', Course.objects.count(), CACHE_TIMEOUT)
     context['team_members'] = User.objects.filter(profile__team=request.user.profile.team).exclude(username=request.user.username)
 
+    certificate_relative_path = None
+    if request.user.profile.has_team():
+        certificate_relative_path = tasks.certificate_relative_path_for_user(request.user)
+
+    context['certificate_available'] = bool(
+        certificate_relative_path
+        and os.path.exists(os.path.join(MEDIA_ROOT, certificate_relative_path))
+    )
+
     # Generate account some useful account notifications
     if not request.user.profile.has_team() and not request.user.profile.is_volunteer():
         messages.warning(
@@ -51,6 +61,46 @@ def dashboard(request):
             request, 'Your FSU number is blank. You must add it to your profile in order to swipe check in using your FSUCard on contest day. Check out the FAQ for more information.')
 
     return render(request, 'manager/dashboard.html', context)
+
+
+@login_required
+def generate_participation_certificate(request):
+    """Schedule creation of the logged-in user's participation certificate PDF."""
+    if not request.user.profile.has_team():
+        messages.error(
+            request,
+            'You must be on a team before generating a participation certificate.',
+            fail_silently=True,
+        )
+        return redirect('manage_dashboard')
+
+    tasks.generate_participation_certificate.delay(request.user.pk)
+    messages.success(
+        request,
+        'Your participation certificate is being generated. Refresh the page in a few seconds to download it.',
+        fail_silently=True,
+    )
+    return redirect('manage_dashboard')
+
+
+@login_required
+def download_participation_certificate(request):
+    """Serve the logged-in user's participation certificate PDF."""
+    if not request.user.profile.has_team():
+        raise Http404('No participation certificate is available for this user.')
+
+    relative_path = tasks.certificate_relative_path_for_user(request.user)
+    absolute_path = os.path.join(MEDIA_ROOT, relative_path)
+
+    if not os.path.exists(absolute_path):
+        messages.error(
+            request,
+            'Your participation certificate has not been generated yet.',
+            fail_silently=True,
+        )
+        return redirect('manage_dashboard')
+
+    return FileResponse(open(absolute_path, 'rb'), as_attachment=True, filename=os.path.basename(absolute_path))
 
 
 @login_required
