@@ -13,10 +13,6 @@ The Programming Contest Suite (PCS) is a set of tools for running [ICPC](https:/
     [View on GitHub](https://github.com/FSU-ACM/Programming-Contest-Suite){: .btn }
 </span>
 
-### Development Update
-
-Future development of this project has been handed off to the ACM at FSU chapter. Please visit [FSU-ACM/Programming-Contest-Suite](https://fsu-acm.github.io/Programming-Contest-Suite/) for the latest version of the project.
-
 <hr>
 
 ## User Manuals
