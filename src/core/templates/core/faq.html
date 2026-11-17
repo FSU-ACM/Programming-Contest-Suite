@@ -442,9 +442,10 @@
     </div>
     <div id="collapseTwoAccount" class="collapse" aria-labelledby="headingTwoAccount" data-parent="#accordionAccount">
       <div class="card-body">
-        If an account activation email does not show up in your inbox or spam/junk email folder within several minutes after creating
-        your account, then reach out to the contest staff. Contact information is available <a
-          href="{% url 'contact' %}">here</a>.
+        Check your spam/junk folder first. If the email still hasn't arrived,
+        <a href="{% url 'resend_activation' %}">request another activation email</a>.
+        Wait at least one minute between requests. If you still need help,
+        <a href="{% url 'contact' %}">contact the contest staff</a>.
       </div>
     </div>
   </div>

@@ -27,6 +27,8 @@ def send_validation_email(domain, username):
     except:
         logger.error(f'Failed to send validation email to {username}')
     else:
+        if user.is_active or user.profile.email_confirmed:
+            return
         subject = 'Activate Your Programming Contest Account'
         message = render_to_string('register/account_activation_email.html', {
             'user': user,

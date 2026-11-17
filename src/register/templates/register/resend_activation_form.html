@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block section %}Resend Activation Email{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Resend Activation Email</h1>
+
+{% include 'messages.html' %}
+
+<div class="row justify-content-center">
+    <div class="col-sm-6 col-md-4">
+        <p>Enter the email address you used to create your account.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+
+            <button class="btn btn-primary btn-sm" type="submit">
+                Send activation email
+            </button>
+            <a class="btn btn-secondary btn-sm" href="{% url 'login' %}">
+                Back to login
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}
