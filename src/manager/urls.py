@@ -5,6 +5,8 @@ from manager import views
 
 urlpatterns = [
     path('', views.dashboard, name='manage_dashboard'),
+    path('certificate/generate/', views.generate_participation_certificate, name='generate_participation_certificate'),
+    path('certificate/download/', views.download_participation_certificate, name='download_participation_certificate'),
     path('courses/', views.manage_courses, name='manage_courses'),
     path('courses/clear/', views.clear_courses, name='clear_courses'),
     path('profile/', views.manage_profile, name='manage_profile'),
