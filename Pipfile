@@ -17,7 +17,8 @@ django-hashid-field = "*"
 django-celery-beat = "*"
 flower = "*"
 discord-py = "==2.5.0"
-pillow = "*"
+pillow = ">=13.0.0,<14"
+certifi = ">=2026.10.18"
 pyyaml = "*"
 
 [dev-packages]
